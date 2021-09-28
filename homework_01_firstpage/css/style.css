@@ -44,8 +44,11 @@ body {
     padding: 40px 20px;
 }
 
-.header__title {
+.header__logo {
     color: #ffffff;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 36px;
 }
 
 .main {
@@ -78,4 +81,79 @@ body {
 
 .fish-list__item {
     margin-bottom: 10px;
+}
+
+.main__wrap {
+    width: 80%;
+    padding: 20px;
+}
+
+.promo__title,
+.popular__title {
+    margin: 0 0 10px;
+    font-size: 32px;
+    line-height: 36px;
+}
+
+.promo__slogan {
+    margin: 0 0 40px;
+}
+
+.promo__list,
+.popular__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.popular__list {
+    flex-wrap: wrap;
+}
+
+.popular__item {
+    width: 30%;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background: #f2f2f2;
+}
+
+.promo__item {
+    width: 45%;
+    background: #f2f2f2;
+    padding: 20px 15px;
+}
+
+.promo__link,
+.popular__link {
+    margin: 0 0 10px;
+    color: #0099cc;
+    font-size: 18px;
+}
+
+.promo__content {
+    margin: 0;
+}
+
+.popular__subtitle {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.popular__img {
+    width: 55px;
+    height: 55px;
+    margin-right: 10px;
+    background: #c2c2c2;
+}
+
+.popular__button {
+    width: 80px;
+    background: #cccccc;
+    border: none;
+    padding: 4px 8px;
 }
