@@ -11,6 +11,10 @@ html {
 body {
     margin: 0;
     padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     font-family: 'Arial', sans-serif;
     font-weight: normal;
     font-size: 16px;
@@ -54,6 +58,7 @@ body {
 .main {
     display: flex;
     padding: 20px 0;
+    height: calc(100% - 176px);
 }
 
 .navigation {
@@ -156,4 +161,21 @@ body {
     background: #cccccc;
     border: none;
     padding: 4px 8px;
+}
+
+.footer {
+    background: #f2f2f2;
+}
+
+.footer__container {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer__subtitle,
+.footer__content {
+    margin: 0;
+    color: #6a6867;
 }
