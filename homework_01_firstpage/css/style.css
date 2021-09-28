@@ -1,0 +1,181 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Arial', sans-serif;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: #122947;
+    background: #F8F8F6;
+}
+
+
+.visually-hidden {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
+.header {
+    background: #009a58;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.header__container {
+    padding: 40px 20px;
+}
+
+.header__logo {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 36px;
+}
+
+.main {
+    display: flex;
+    padding: 20px 0;
+    height: calc(100% - 176px);
+}
+
+.navigation {
+    width: 20%;
+    padding: 20px;
+    background: #f2f2f2;
+}
+
+.fish-list,
+.navigation__list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.navigation__subtitle {
+    margin: 0 0 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.fish-list {
+    padding-left: 20px;
+}
+
+.fish-list__item {
+    margin-bottom: 10px;
+}
+
+.main__wrap {
+    width: 80%;
+    padding: 20px;
+}
+
+.promo__title,
+.popular__title {
+    margin: 0 0 10px;
+    font-size: 32px;
+    line-height: 36px;
+}
+
+.promo__slogan {
+    margin: 0 0 40px;
+}
+
+.promo__list,
+.popular__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.popular__list {
+    flex-wrap: wrap;
+}
+
+.popular__item {
+    width: 30%;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background: #f2f2f2;
+}
+
+.promo__item {
+    width: 45%;
+    background: #f2f2f2;
+    padding: 20px 15px;
+}
+
+.promo__link,
+.popular__link {
+    margin: 0 0 10px;
+    color: #0099cc;
+    font-size: 18px;
+}
+
+.promo__content {
+    margin: 0;
+}
+
+.popular__subtitle {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.popular__img {
+    width: 55px;
+    height: 55px;
+    margin-right: 10px;
+    background: #c2c2c2;
+}
+
+.popular__button {
+    width: 80px;
+    background: #cccccc;
+    border: none;
+    padding: 4px 8px;
+}
+
+.footer {
+    background: #f2f2f2;
+}
+
+.footer__container {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer__subtitle,
+.footer__content {
+    margin: 0;
+    color: #6a6867;
+}
