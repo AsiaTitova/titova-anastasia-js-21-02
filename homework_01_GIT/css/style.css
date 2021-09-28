@@ -55,11 +55,11 @@ svg path {
     fill: #9A9DA0;
 }
 
-.navigation {
+.header__navigation {
     display: flex;
 }
 
-.navigation__list {
+.navigation {
     display: flex;
     align-items: center;
     margin: 0;
@@ -67,7 +67,7 @@ svg path {
     list-style: none;
 }
 
-.navigation__list_icons {
+.navigation_icons {
    margin-left: 50px;
 }
 
@@ -295,4 +295,15 @@ details[open] summary::after {
     font-size: 13px;
     line-height: 19px;
     color: #9A9DA0;
+}
+
+.footer {
+    background: #F4F1ED;
+}
+
+.footer__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 0;
 }
