@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
-        <div class="header__container">
+        <div class="header__container container">
             <div class="header__logo logo">
                 <a class="logo__link" href="index.html" aria-label="Перейти на главную страницу сайта">
                     <svg width="131" height="21" viewBox="0 0 131 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,5 +58,44 @@
             </nav>
         </div>
     </header>
+    <main class="main">
+        <section class="main__product-info product-info">
+            <div class="product-info__container container">
+                <div class="product-info__image">
+                    <img src="img/cream.png" width="630" height="647" alt="Карточка товара">
+                </div>
+                <div class="product-info__wrap">
+                    <h1 class="product-info__title">Rose</h1>
+                    <p class="product-info__subtitle">крем для лица</p>
+                    <p class="product-info__description">Увлажняющий крем идеально подходит для повседневного ухода за молодой кожей. Крем равномерно распределяется по поверхности благодаря легкой текстуре, обеспечивает глубокое увлажнение, регенерацию клеток. </p>
+                    <details class="product-info__details" open>
+                        <summary>Состав</summary>
+                        <p class="product-info__content">Aqua, Cyclomethicone, Dicaprylyl Carbonate, Butylene Glycol, Glycerin, Tapioca Starch, Nelumbium Speciosum Flower Extract, Calendula Officinalis Flower Extract, Propylene Glycol, Tocopherol, Glycine Soja Oil, Dimethiconol, Citronellol, Limonene.</p>
+                    </details>
+                    <details class="product-info__details" open>
+                        <summary>Способ применения</summary>
+                        <p class="product-info__content">Нанесите крем на очищенную кожу лица легкими массажными круговыми движениями, избегая области вокруг глаз. Подходит для дневного и ночного ухода. </p>
+                    </details>
+                    <form class="product-info__form form" method="POST">
+                        <div class="form__row">
+                           <p class="form__subtitle">Объем:</p>
+                            <p class="form__wrap">
+                                <input class="form__input visually-hidden" type="radio" id="50ml" name="size" checked>
+                                <label class="form__label" for="50ml">50ml</label>
+                            </p>
+                            <p class="form__wrap">
+                                <input class="form__input visually-hidden" type="radio" id="30ml" name="size">
+                                <label class="form__label" for="30ml">30ml</label>
+                            </p>
+                        </div>
+                        <div class="form__row">
+                            <p class="form__price">890 &#8381;</p>
+                            <button class="form__submit" type="submit" aria-label="Добавить крем в корзину">Добавить в корзину</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
