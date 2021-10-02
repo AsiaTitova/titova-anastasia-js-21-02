@@ -397,103 +397,103 @@ body {
 }
 
 
-.theme-dark .header {
+.body_theme_dark .header {
   background: #202020;
   border-bottom: 1px solid #ffffff;
 }
 
-.theme-dark .page {
+.body_theme_dark .page {
   background: #202020;
   padding: 0;
 }
 
 @media (max-width: 768px) {
-  .theme-dark .page {
+  .body_theme_dark .page {
     height: calc(100% - 208px);
   }
 }
 
 @media (max-width: 850px) and (max-height: 450px) {
-  .theme-dark .page {
+  .body_theme_dark .page {
     padding: 0;
     height: calc(100% - 136px);
   }
 }
 
 @media (max-width: 520px) {
-  .theme-dark .page {
+  .body_theme_dark .page {
     height: calc(100% - 166px);
   }
 }
 
-.theme-dark .switch__label:before {
+.body_theme_dark .switch__label:before {
   background: #f68121;
 }
 
-.theme-dark .navigation {
+.body_theme_dark .navigation {
   padding: 40px 20px 0;
   background:  #202020;
   border-right: 1px solid #ffffff;
 }
 
-.theme-dark .main {
+.body_theme_dark .main {
   padding: 40px 20px 0;
 }
 
-.theme-dark .navigation__item,
-.theme-dark .promo__title,
-.theme-dark .promo__slogan,
-.theme-dark .popular__title {
+.body_theme_dark .navigation__item,
+.body_theme_dark .promo__title,
+.body_theme_dark .promo__slogan,
+.body_theme_dark .popular__title {
   color: #ffffff;
 }
 
-.theme-dark .promo__item {
+.body_theme_dark .promo__item {
   color: #ffffff;
   background: transparent;
   border: 1px solid #ffffff;
 }
 
-.theme-dark .popular__item {
+.body_theme_dark .popular__item {
   color: #ffffff;
   background: #f68121;
 }
 
-.theme-dark .promo__link {
+.body_theme_dark .promo__link {
   color: #f68121;
   text-decoration: none;
 }
 
-.theme-dark .popular__link {
+.body_theme_dark .popular__link {
   color: #ffffff;
   text-decoration: none;
 }
 
-.theme-dark .promo__link:hover,
-.theme-dark .promo__link:focus {
+.body_theme_dark .promo__link:hover,
+.body_theme_dark .promo__link:focus {
   color: #efb483;
 }
 
-.theme-dark .popular__link:hover,
-.theme-dark .popular__link:focus {
+.body_theme_dark .popular__link:hover,
+.body_theme_dark .popular__link:focus {
   color: #202020;
 }
 
-.theme-dark .popular__button {
+.body_theme_dark .popular__button {
   background: #494450;
   color: #ffffff;
 }
 
-.theme-dark .popular__button:hover,
-.theme-dark .popular__button:focus {
+.body_theme_dark .popular__button:hover,
+.body_theme_dark .popular__button:focus {
   background: #202020;
 }
 
-.theme-dark .footer {
+.body_theme_dark .footer {
   background: #202020;
   border-top: 1px solid #ffffff;
 }
 
-.theme-dark .footer__subtitle,
-.theme-dark .footer__content {
+.body_theme_dark .footer__subtitle,
+.body_theme_dark .footer__content {
   color: #ffffff;
 }
