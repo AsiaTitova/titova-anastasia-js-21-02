@@ -55,7 +55,7 @@ body {
     line-height: 36px;
 }
 
-.main {
+.page {
     display: flex;
     padding: 20px 0;
     height: calc(100% - 176px);
@@ -88,7 +88,7 @@ body {
     margin-bottom: 10px;
 }
 
-.main__wrap {
+.main {
     width: 80%;
     padding: 20px;
 }
@@ -111,6 +111,7 @@ body {
     margin: 0 0 60px;
     display: flex;
     justify-content: space-between;
+    overflow-x: scroll;
 }
 
 .popular__list {
