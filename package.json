@@ -1,0 +1,16 @@
+{
+  "name": "titova-anastasia-js-21-02",
+  "version": "1.0.0",
+  "author": "Titova Anastasia",
+  "scripts": {
+    "dev": "gulp"
+  },
+  "dependencies": {
+    "gulp-less": "^5.0.0",
+    "less": "^4.1.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.27.5",
+    "gulp": "^4.0.2"
+  }
+}

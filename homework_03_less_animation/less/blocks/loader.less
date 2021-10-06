@@ -1,0 +1,67 @@
+.loader {
+  width: 50px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: auto;
+  animation-name: rotate;
+  animation-duration: 10s;
+  animation-timing-function: ease-in-out;
+
+  &__dotted-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__dotted-item {
+    width: 10px;
+    height: 10px;
+    background: @background-default;
+    border-radius: 50%;
+    animation-name: dotted-loader;
+    animation-duration: 10s;
+    animation-timing-function: ease-in-out;
+  }
+
+  @keyframes dotted-loader {
+    from {
+      transform: scale(0.5);
+    }
+    20% {
+      transform: scale(1.2);
+    }
+    40% {
+      transform: scale(0.5);
+    }
+    60% {
+      transform: scale(1.2);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0);
+    }
+    25% {
+      transform: rotate(360deg);
+    }
+    50% {
+      transform: rotate(0);
+    }
+    75% {
+      transform: rotate(360deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

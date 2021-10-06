@@ -1,0 +1,65 @@
+.switch {
+  position: relative;
+  display: block;
+  width: 60px;
+  height: 34px;
+  margin-left: 36px;
+  border-radius: 4px;
+  background: transparent;
+  border: 1px solid @white;
+}
+
+.switch__label {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  background: @background-primary;
+  transition: all 0.4s ease-in-out;
+}
+
+.switch__label:before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 4px;
+  top: 4px;
+  border-radius: 4px;
+  background: @white;
+  transition: all 0.4s ease-in-out;
+}
+
+.switch__img {
+  position: absolute;
+}
+
+.switch__img path {
+  stroke-width: 3;
+}
+
+.switch__img_light {
+  left: 4px;
+  top: 4px
+}
+
+.switch__img_dark {
+  right: 4px;
+  top: 4px
+}
+
+.switch__checkbox:checked + .switch__label {
+  background: @background-primary;
+}
+
+.switch__checkbox:checked + .switch__label .switch__img_light path{
+  fill: @white;
+  stroke: @white;
+}
+
+.switch__checkbox:checked + .switch__label:before {
+  transform: translateX(26px);
+}
+
+.switch__checkbox:checked + .switch__label .switch__img_dark path {
+  fill: @text-accent;
+}
