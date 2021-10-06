@@ -15,6 +15,7 @@
     align-items: center;
     margin-bottom: 20px;
     background: @background-primary;
+    transition: all 0.4s ease-in-out;
 
     @media (max-width: @lg) {
         width: 45%;
@@ -23,6 +24,14 @@
     @media (max-width: @md) {
         width: 100%;
         margin: 0 0 16px;
+    }
+
+    &:hover {
+      background: @action-secondary-hover;
+
+      .popular__link {
+        color: @white;
+      }
     }
   }
 
