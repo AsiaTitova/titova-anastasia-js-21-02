@@ -3,7 +3,6 @@ const secondTaskButton = document.querySelector(".button_second-task");
 const thirdTaskButton = document.querySelector(".button_third-task");
 const fourTaskButton = document.querySelector(".button_four-task");
 const fiveTaskButton = document.querySelector(".button_five-task");
-const fiveTaskPromptButton = document.querySelector(".button_five-task-prompt");
 const sixTaskButton = document.querySelector(".button_six-task");
 const sixTaskPromptButton = document.querySelector(".button_six-task-prompt");
 const sevenTaskButton = document.querySelector(".button_seven-task");
@@ -85,22 +84,15 @@ const fourTask = () => {
 
 // 5. На вход дана строка в PamalCase, преобразовать строку в snake_case
 
-const fiveTask = (string) => {
-  // Регулярное выражение на правильность введеной строки
-  let regexp = new RegExp(/^PamalCase$/);
+const fiveTask = () => {
+  //Вызов модального окна с предложением ввести строку в PamelCase
+  let string = prompt('Введите строку в PamelCase ');
 
-  // Проверка на правильность введеной строки
-  if (regexp.test(string)) {
-    alert(string.replace('Pamal', 'snake_').toLowerCase());
-  } else {
-    let result = prompt('Строка введена не верно! Введите строку - PamalCase')
-    fiveTask(result)
-  }
-}
+  // Регулярное выражение на поиск заглавных символов
+  let regexp = new RegExp(/(?=[A-ZА-ЯЁ])/, "g");
 
-const fiveTaskPrompt = () => {
-  let string = prompt('Введите строку');
-  fiveTask(string);
+  // Вывод результата в snake_case
+  alert(string.split(regexp).join('_').toLowerCase());
 }
 
 // 6. На вход даётся многострочная строка, найти и вернуть через alert все html комментарии
@@ -111,8 +103,10 @@ const sixTask = (string) => {
 
   // Вывод всех комментариев в виде перечисления в массиве
   let stringArr = string.match(regexp);
-  if (stringArr) {
-    alert(stringArr);
+  let newArr = stringArr.map(item => item);
+  let elements = newArr.map( item => String(item).slice(4, item.length - 3))
+  if (elements) {
+    alert(elements);
   } else {
     alert('Комментариев нет!')
   }
@@ -165,11 +159,7 @@ firstTaskButton.addEventListener("click", firstTask);
 secondTaskButton.addEventListener("click", secondTask);
 thirdTaskButton.addEventListener("click", thirdTask);
 fourTaskButton.addEventListener("click", fourTask);
-
-fiveTaskButton.addEventListener("click", function() {
-  fiveTask('PamalCase')
-});
-fiveTaskPromptButton.addEventListener("click", fiveTaskPrompt);
+fiveTaskButton.addEventListener("click", fiveTask);
 
 sixTaskButton.addEventListener("click", function() {
   const div = `<div><p>Строка 1</p><!--<p>Закомментированный Шаблон текста</p>--><p>Строка 2</p><!--<p>Закомментированный Шаблон текста</p>--></div>`
