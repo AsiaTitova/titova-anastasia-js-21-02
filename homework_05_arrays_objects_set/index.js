@@ -50,7 +50,9 @@ const thirdTask = (array) => {
 const fourTask = (object) => {
   let result = 0;
   for (let item of Object.values(object)) {
-    result += item;
+    if (typeof item === 'number') {
+      result += item;
+    }
   }
   console.log(result)
 }
@@ -194,15 +196,21 @@ const nineTask = (string1, string2) => {
 
 const tenTask = (object) => {
   let newArr = [];
-  Object.keys(object).forEach(key => newArr.push(`${key}: ${object[key]}`))
+  Object.keys(object).forEach(key => {
+    if (typeof (object[key]) !== 'object') {
+      newArr.push(`${key}: ${object[key]}`)
+    }
+  })
   let result = "".concat(newArr, " ")
   console.log(result)
 }
-
+//
 // const object = {
 //   key1: 'value1',
 //   key2: 'value2',
-//   key3: 'value3'
+//   key3: { key: 'value' },
+//   key4: ["value", "value"],
+//   key5: 7
 // }
 // tenTask(object)
 
@@ -212,34 +220,19 @@ const tenTask = (object) => {
 // значение (произвольное) и объект со свойствами writable, configurable, enumerable (разрешение перезаписи свойства,
 // разрешение перечисления свойства и разрешение удаления свойства). Если какое-то из свойств в объекте отсутствует, действие должно быть разрешено
 
-function elevenTask(string, value, attr) {
-  this.string = this.value
-
-  this.setProp = () => {
-    return Object.defineProperty(this, string, attr)
+function elevenTask() {
+  this.setProp = (key, value, {writable= true, configurable= true, enumerable= true} = {}) => {
+    Object.defineProperty(this, key, {
+        value,
+        writable,
+        configurable,
+        enumerable
+    })
   }
-
-  Object.defineProperties(this, {
-    string: {
-      value: value,
-      writable: true,
-      configurable: true,
-      enumerable: true
-    }
-  })
 }
 
-const firstObj = new elevenTask('name', 'Oleg', {
-  writable: true,
-  configurable: true,
-  enumerable: true
-})
-
-console.log( Object.defineProperty(firstObj, 'address', {
-  value: 'Moscow',
-  writable: true,
-  configurable: true,
-  enumerable: true
-}))
+const firstObj = new elevenTask();
+firstObj.setProp('name' , "Oleg", {writable: false, enumerable: false})
+// console.log( Object.getOwnPropertyDescriptors(firstObj))
 
 
