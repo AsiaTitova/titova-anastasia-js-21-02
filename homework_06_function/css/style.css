@@ -1,0 +1,16 @@
+button {
+  margin: 0 0 24px;
+}
+
+
+.task-one,
+.task-two,
+.result-one,
+.result-two {
+  display: none;
+}
+
+
+.open {
+   display: block;
+}
