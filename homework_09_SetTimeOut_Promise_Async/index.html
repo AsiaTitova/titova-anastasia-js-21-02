@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Домашнее задание №9</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main>
+    <h1 class="title">Домашнее задание №9. Главная страница</h1>
+    <section class="task">
+      <h2 class="task__title">Задание 1</h2>
+      <p class="task__description">Разработать скрипт. Пользователь вводит два числа (i, j), каждую секунду выводить число от i до j (реализвать через setTimeout и setInterval).</p>
+      <form class="task__form">
+        <div class="task__wrap">
+          <label for="one">Первое число</label>
+          <input class="task__input" id="one" name="one" type="number">
+          <p class="task__error task__error_one"></p>
+        </div>
+        <div class="task__wrap">
+          <label for="two">Второе число</label>
+          <input class="task__input" id="two" name="two" type="number">
+          <p class="task__error task__error_two"></p>
+        </div>
+        <button class="task__button task__button_set-timeout" type="button">Запустить setTimeout</button>
+        <button class="task__button task__button_set-interval" type="button">Запустить setInterval</button>
+      </form>
+      <div class="task__result">
+        <h3 class="task__subtitle">Результат:</h3>
+        <p class="task__content"></p>
+      </div>
+    </section>
+    <section class="task">
+      <h2 class="task__title">Задание 2</h2>
+      <p class="task__description">Реализовать страницу, через десять секунд перенаправляющую на главную страницу https://maxima.life (для редиректа поменять свойство window.location) на странице вывести сообщение "вы будите перенаправлены через /*количество оставшихся секунд*/" секунд</p>
+      <p class="task__description">*Опционально: предусмотреть склонение слова "секунда"</p>
+      <div class="task__container">
+        <a href="redirectPage.html" class="task__link">Перейти на страницу Редирект</a>
+      </div>
+    </section>
+    <section class="task">
+      <h2 class="task__title">Задание 3</h2>
+      <p class="task__description">Реализовать страницу с таблицей. Таблица должна содержать инфрмацию, полученную по API https://swapi.dev/api/people/ (массив объектов в свойстве "results"). А именно росте, весе и поле персонажей (поля "name", "height", "mass" и "gender" соответственно).</p>
+      <p class="task__description">*Опционально: предусмотреть возможность сортировки таблицы</p>
+      <p class="task__description">*Опционально: предусмотреть возможность перехода к следующей странице (ссылка содержится в объекте API в свойстве "next") и предыдущей странице (ссылка содержится в объекте API в свойстве "previous")</p>
+      <div class="task__container">
+        <a href="table.html" class="task__link">Перейти на страницу Таблица</a>
+      </div>
+    </section>
+  </main>
+</body>
+<script src="js/index.js"></script>
+</html>
