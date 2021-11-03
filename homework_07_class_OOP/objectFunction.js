@@ -14,7 +14,7 @@ function AnimalFunc(name) {
   }
 }
 
-Object.defineProperties(AnimalFunc, {
+Object.defineProperties(this, {
   'name': {
     configurable: false,
     writable: false,
@@ -55,7 +55,7 @@ function CatFunc(name, type) {
 }
 
 
-Object.defineProperties(CatFunc, {
+Object.defineProperties(this, {
   'name': {
     configurable: false,
     writable: false,
@@ -103,7 +103,7 @@ function DogFunc(name, type) {
 }
 
 
-Object.defineProperties(DogFunc, {
+Object.defineProperties(this, {
   'name': {
     configurable: false,
     writable: false,
@@ -141,7 +141,7 @@ function ParrotFunc(name, type) {
   }
 }
 
-Object.defineProperties(ParrotFunc, {
+Object.defineProperties(this, {
   'name': {
     configurable: false,
     writable: false,

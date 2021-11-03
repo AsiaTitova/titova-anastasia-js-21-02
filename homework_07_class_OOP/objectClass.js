@@ -52,7 +52,7 @@ class CatClass extends AnimalClass {
     console.log(`${this._name} охотится`)
   }
 
-  say = function() {
+  say() {
     console.log(`${this.type} мяукает`);
   }
 }
@@ -95,7 +95,7 @@ class DogClass extends AnimalClass {
     this.type = type;
   }
 
-  say = function() {
+  say() {
     console.log(`${this.type} мяукает`);
   }
 }
@@ -138,7 +138,7 @@ class ParrotClass extends AnimalClass  {
     this.type = type;
   }
 
-  say = function() {
+  say() {
     console.log(`${this.type} говорит`);
   }
 }
