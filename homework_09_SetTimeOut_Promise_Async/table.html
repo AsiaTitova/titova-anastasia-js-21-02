@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Домашнее задание №9</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main>
+  <h1 class="title">Домашнее задание №9. Tаблица</h1>
+  <section class="task">
+    <h2 class="task__title">Задание 3</h2>
+    <p class="task__description">Реализовать страницу с таблицей. Таблица должна содержать инфрмацию, полученную по API https://swapi.dev/api/people/ (массив объектов в свойстве "results"). А именно росте, весе и поле персонажей (поля "name", "height", "mass" и "gender" соответственно).</p>
+    <p class="task__description">*Опционально: предусмотреть возможность сортировки таблицы</p>
+    <p class="task__description">*Опционально: предусмотреть возможность перехода к следующей странице (ссылка содержится в объекте API в свойстве "next") и предыдущей странице (ссылка содержится в объекте API в свойстве "previous")</p>
+    <div class="task__container">
+      <div class="task__navigation">
+        <button class="task__link task__link_prev" type="button">Предыдущая страница</button>
+        <button class="task__link task__link_next" type="button">Следующая страница</button>
+      </div>
+      <div class="task__table table">
+        <h3 class="table__title">Список персонажей</h3>
+        <table class="table__main">
+          <thead>
+          <tr class="table__row">
+            <th class="table__th">Имя
+              <span class="table__sort-name">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-sort" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z"/>
+                  <path d="M3 9l4-4l4 4m-4 -4v14" />
+                  <path d="M21 15l-4 4l-4-4m4 4v-14" />
+                </svg>
+              </span>
+            </th>
+            <th class="table__th">Рост
+              <span class="table__sort-height">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-sort" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z"/>
+                  <path d="M3 9l4-4l4 4m-4 -4v14" />
+                  <path d="M21 15l-4 4l-4-4m4 4v-14" />
+                </svg>
+              </span>
+            </th>
+            <th class="table__th">Вес
+              <span class="table__sort-mass">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-sort" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z"/>
+                  <path d="M3 9l4-4l4 4m-4 -4v14" />
+                  <path d="M21 15l-4 4l-4-4m4 4v-14" />
+                </svg>
+              </span>
+            </th>
+            <th class="table__th">Пол
+              <span class="table__sort-gender">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-sort" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z"/>
+                  <path d="M3 9l4-4l4 4m-4 -4v14" />
+                  <path d="M21 15l-4 4l-4-4m4 4v-14" />
+                </svg>
+              </span>
+            </th>
+          </tr>
+          </thead>
+          <tbody class="table__tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+<template id="user-row">
+  <tr class="table__row">
+  </tr>
+</template>
+</body>
+<script src="js/promise.js"></script>
+</html>
