@@ -1,13 +1,13 @@
 'use strict';
 
 // Разработать скрипт. Пользователь вводит два числа (i, j), каждую секунду выводить число от i до j.
-const buttonStartSetTimeoutOneTask = document.querySelector('.task-one__button_set-timeout');
-const buttonStartSetIntervalOneTask = document.querySelector('.task-one__button_set-interval');
+const buttonStartSetTimeoutOneTask = document.querySelector('.task__button_set-timeout');
+const buttonStartSetIntervalOneTask = document.querySelector('.task__button_set-interval');
 const firstNumberOneTask = document.getElementById('one');
 const secondNumberOneTask = document.getElementById('two');
-const resultValueOneTask = document.querySelector('.task-one__content')
-const errorFirstNumberOneTask = document.querySelector('.task-one__error_one')
-const errorSecondNumberOneTask = document.querySelector('.task-one__error_two')
+const resultValueOneTask = document.querySelector('.task__content')
+const errorFirstNumberOneTask = document.querySelector('.task__error_one')
+const errorSecondNumberOneTask = document.querySelector('.task__error_two')
 
 buttonStartSetTimeoutOneTask.addEventListener('click', timerIntervalCounterSetTimeout);
 buttonStartSetIntervalOneTask.addEventListener('click', timerIntervalCounterSetInterval);
@@ -18,6 +18,7 @@ function timerIntervalCounterSetTimeout() {
   let firstNumber = firstNumberOneTask.value;
   let secondNumber = secondNumberOneTask.value;
   checkValidationOneTask(firstNumber, secondNumber);
+  console.log(123)
   setTimeout(timer, 1000, firstNumber, secondNumber);
 }
 
@@ -59,29 +60,29 @@ function checkValidationOneTask (firstNumber, secondNumber) {
   let reqExp = new RegExp("^\d+$");
   if (!firstNumber) {
     errorFirstNumberOneTask.innerHTML = 'Введите первое число';
-    addClassElement(errorFirstNumberOneTask, 'task-one__error_show');
+    addClassElement(errorFirstNumberOneTask, 'task__error_show');
     return false
   } else if (!secondNumber) {
     errorSecondNumberOneTask.innerHTML = 'Введите второе число';
-    addClassElement(errorSecondNumberOneTask, 'task-one__error_show');
+    addClassElement(errorSecondNumberOneTask, 'task__error_show');
     return false
   } else if (reqExp.test(firstNumber)) {
     errorFirstNumberOneTask.innerHTML = 'Введите целое число';
-    addClassElement(errorFirstNumberOneTask, 'task-one__error_show');
+    addClassElement(errorFirstNumberOneTask, 'task__error_show');
     return false
   } else if (reqExp.test(secondNumber)) {
     errorSecondNumberOneTask.innerHTML = 'Введите целое число';
-    addClassElement(errorSecondNumberOneTask, 'task-one__error_show');
+    addClassElement(errorSecondNumberOneTask, 'task__error_show');
     return false
   } else if (firstNumber > secondNumber) {
     errorFirstNumberOneTask.innerHTML = 'Первое число должно быть меньше второго';
-    addClassElement(errorFirstNumberOneTask, 'task-one__error_show');
+    addClassElement(errorFirstNumberOneTask, 'task__error_show');
     return false
   } else {
     errorFirstNumberOneTask.innerHTML = '';
     errorSecondNumberOneTask.innerHTML = '';
-    removeClassElement(errorFirstNumberOneTask, 'task-one__error_show');
-    removeClassElement(errorSecondNumberOneTask, 'task-one__error_show');
+    removeClassElement(errorFirstNumberOneTask, 'task__error_show');
+    removeClassElement(errorSecondNumberOneTask, 'task__error_show');
   }
 }
 
