@@ -19,3 +19,75 @@ p {
   padding: 24px;
   box-shadow: 0 0 2px rgba(167, 169, 192, 0.3), 0 3px 10px rgba(167, 169, 192, 0.2);
 }
+
+.task__form,
+.task__gallery {
+  width: 90%;
+  margin: 0 auto 24px;
+  flex-wrap: wrap;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 0 2px rgba(167, 169, 192, 0.3), 0 3px 10px rgba(167, 169, 192, 0.2);
+}
+
+.task__wrap {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.task__gallery {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.gallery img {
+  display: block;
+  width: 30%;
+  height: auto;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FAFAFE;
+  border-radius: 4px;
+  height: 32px;
+  padding: 4px;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  color: #787996;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid #F1EFFA;
+  text-decoration: none;
+}
+
+button:hover,
+button:focus{
+  background: #F1EFFA;
+}
+
+.task__loader {
+  display: none;
+  position: relative;
+  width: 120px;
+  height: 10px;
+  margin: 0 0 4px;
+}
+
+#loader-box {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  background: #787996;
+  border-radius: 50%;
+}
+
+.loader__show {
+  display: block;
+}
