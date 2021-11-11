@@ -1,0 +1,13 @@
+{
+  "files": ["./src/*.ts"],  // Файлы которые необходимо компилировать
+  "compilerOptions": {
+    "noImplicitAny": true, // Запрет на нетизиированные сущности
+    "module": "commonjs",
+    "target": "ES5", // В какую версию JS проводить компиляцию
+    "sourceMap": true
+  },
+  "exclude": [
+    "node_modules",
+    "./dist/*"
+  ]
+}
