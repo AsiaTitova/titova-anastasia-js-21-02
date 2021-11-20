@@ -1,0 +1,41 @@
+.navigation {
+  width: 240px;
+  padding: 20px;
+  background: #f2f2f2;
+
+  @media (max-width: 850px) and (max-height: 450px) {
+    overflow-y: scroll;
+    height: 100%;
+  }
+
+  @media (max-width: 520px) {
+    display: none;
+  }
+
+  &__list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &__subtitle {
+    margin: 0 0 10px;
+    font-weight: bold;
+    font-size: 18px;
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+  }
+}
+
+.fish-list {
+  padding: 0 0 0 20px;
+  margin: 0;
+  list-style: none;
+}
+
+.fish-list__item {
+  margin-bottom: 10px;
+}
+
