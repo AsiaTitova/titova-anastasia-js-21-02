@@ -1,0 +1,19 @@
+.todo {
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item_empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    color: #787996;
+    text-transform: uppercase;
+  }
+}
