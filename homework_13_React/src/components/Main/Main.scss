@@ -1,0 +1,9 @@
+.main {
+  width: 80%;
+  padding: 20px;
+  overflow-y: scroll;
+
+  @media (max-width: 520px) {
+    width: 100%;
+  }
+}
