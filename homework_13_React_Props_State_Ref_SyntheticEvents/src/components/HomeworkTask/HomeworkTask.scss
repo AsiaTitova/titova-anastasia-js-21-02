@@ -1,0 +1,17 @@
+.homework {
+  width: 90%;
+  margin: 0 auto 24px;
+  flex-wrap: wrap;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 0 2px rgba(167, 169, 192, 0.3), 0 3px 10px rgba(167, 169, 192, 0.2);
+
+  &__title {
+    margin: 0 0 24px;
+  }
+
+  &__description {
+    margin: 0 0 16px;
+  }
+}
