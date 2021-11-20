@@ -13,7 +13,7 @@ export class TodoAddForm extends React.Component<Props> {
   }
 
   addTask(): void {
-    const input = document.querySelector('input');
+    const input: HTMLInputElement | null = document.querySelector('input');
     if (input && this.props.addItem) {
       this.props.addItem(input.value);
       input.value = '';
