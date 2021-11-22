@@ -1,0 +1,20 @@
+.theme-switch {
+  margin-left: auto;
+
+  &__label {
+    display: flex;
+    align-items: center;
+  }
+
+  &__title {
+    font-size: 24px;
+    margin-right: 16px;
+  }
+
+  input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    padding: 0;
+  }
+}
