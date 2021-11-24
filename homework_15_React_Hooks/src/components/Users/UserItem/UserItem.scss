@@ -1,0 +1,23 @@
+.user {
+  &__item {
+    width: 100%;
+    margin: 0 0 24px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 24px;
+    background: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 0 2px rgba(167, 169, 192, 0.3), 0 3px 10px rgba(167, 169, 192, 0.2);
+  }
+
+  &__avatar {
+    width: 100px;
+    height: 100px;
+    background: #9A9DA0;
+    margin-right: 16px;
+  }
+
+  &__name {
+    color: #808092;
+  }
+}
