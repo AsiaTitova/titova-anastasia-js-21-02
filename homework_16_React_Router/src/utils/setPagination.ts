@@ -20,7 +20,6 @@ export const setPagination = ({
 }: Props) => {
   const totalPageCount = Math.ceil(total / limit);
 
-  // Pages count is determined as siblingCount + 3*firstPage + 3*lastPage + currentPage + 2*DOTS
   const totalPageNumbers = siblingCount + 9;
 
   if (totalPageNumbers >= totalPageCount) {
