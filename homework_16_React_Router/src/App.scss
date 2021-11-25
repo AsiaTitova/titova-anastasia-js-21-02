@@ -1,0 +1,90 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  font-family: 'Arial', sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  color: #122947;
+  background: #e7e8e6;
+  transition: all 0.4s ease-in-out;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+h1,
+h2,
+p {
+  color: #202223;
+  margin: 0;
+}
+
+p {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.app {
+  padding: 30px;
+  min-height: 100vh;
+}
+
+.dark-theme {
+  background: #424242;
+}
+
+.dark-theme .homework,
+.dark-theme .user__item,
+.dark-theme .user-card {
+  background: #202223;
+}
+
+.dark-theme .homework__title,
+.dark-theme .homework__description,
+.dark-theme .user__title,
+.dark-theme .user__name,
+.dark-theme .theme-switch__title,
+.dark-theme .pagination__button,
+.dark-theme .count select,
+.dark-theme .user-card__name,
+.dark-theme .user-card__content,
+.dark-theme .user-card__back {
+  color: #ffffff;
+}
+
+.dark-theme .pagination__button,
+.dark-theme .count select,
+.dark-theme .user-card__back {
+  background: #202223;
+  border: 1px solid #ffffff;
+
+  &:hover,
+  &:focus,
+  &_current {
+    background: #022361;
+  }
+}
