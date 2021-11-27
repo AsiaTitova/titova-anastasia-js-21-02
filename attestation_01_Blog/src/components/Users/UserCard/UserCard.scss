@@ -1,0 +1,64 @@
+.user-card {
+  width: 80%;
+  padding: 32px 0;
+  margin: 0 auto;
+
+  &__info {
+    width: 100%;
+    margin-top: 48px;
+  }
+
+  &__edit {
+    margin-left: auto;
+    width: max-content;
+    height: 30px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+
+    svg {
+      fill: rgba(0, 0, 0, 0.85);
+    }
+
+    &:hover,
+    &:focus {
+      svg {
+        fill: #1890ff;
+      }
+    }
+  }
+
+  &__wrap {
+    display: flex;
+    margin: 0 0 24px;
+  }
+
+  &__img {
+    display: block;
+    margin-right: 16px;
+    border-radius: 50%;
+  }
+
+  &__list {
+    margin: 0;
+    padding: 32px 0;
+    list-style: none;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #F1EFFA;
+  }
+
+  &__content {
+    width: 50%;
+    margin: 0 0 24px;
+
+    span {
+      margin-right: 16px;
+      font-weight: bold;
+    }
+  }
+}

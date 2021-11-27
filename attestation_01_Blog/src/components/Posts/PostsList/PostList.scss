@@ -1,0 +1,53 @@
+.post {
+  position: relative;
+  width: 80%;
+  padding: 32px 0;
+  margin: 0 auto;
+
+  &__title {
+    position: relative;
+    margin: 0 0 56px;
+    padding: 0 0 8px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 84px;
+      height: 4px;
+      background: #1890ff;
+    }
+  }
+
+  &__list {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+    list-style: none;
+    column-gap: 16px;
+
+    @media only screen and (max-width: 480px) {
+      column-count: 1;
+    }
+    @media only screen and (min-width: 481px) and (max-width: 620px) {
+      column-count: 2;
+    }
+    @media only screen and (min-width: 1024px) {
+      column-count: 3;
+    }
+  }
+
+  &__item {
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 16px;
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: flex-end;
+    margin: 24px 0 0;
+  }
+}
