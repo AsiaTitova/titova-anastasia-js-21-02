@@ -1,0 +1,93 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  font-family: 'Arial', sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  color: #122947;
+  background: #e7e8e6;
+  transition: all 0.4s ease-in-out;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+h1,
+h2,
+p {
+  color: #202223;
+  margin: 0;
+}
+
+p {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.app {
+  min-height: 100vh !important;
+}
+
+.dark-theme {
+  background: #001529 !important;
+}
+
+.dark-theme .user__item,
+.dark-theme .user-card,
+.dark-theme .registration,
+.dark-theme .registration__container {
+  background: #001529;
+}
+
+.dark-theme .user__title,
+.dark-theme .user__name,
+.dark-theme .theme-switch__title,
+.dark-theme .pagination__button,
+.dark-theme .count select,
+.dark-theme .user-card__name,
+.dark-theme .user-card__content,
+.dark-theme .user-card__back,
+.dark-theme .ant-form-item-label > label,
+.dark-theme .ant-checkbox-wrapper,
+.dark-theme .registration__title,
+.dark-theme .ant-pagination-prev .ant-pagination-item-link,
+.dark-theme .ant-pagination-next .ant-pagination-item-link,
+.dark-theme .ant-select:not(.ant-select-customize-input) .ant-select-selector,
+.dark-theme .ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-ellipsis,
+.dark-theme .ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-ellipsis,
+.dark-theme .ant-pagination-item a {
+  color: #ffffff;
+}
+
+.dark-theme .user-card__back,
+.dark-theme .ant-pagination-item,
+.dark-theme .ant-select:not(.ant-select-customize-input) .ant-select-selector,
+.dark-theme .ant-pagination-prev .ant-pagination-item-link,
+.dark-theme .ant-pagination-next .ant-pagination-item-link {
+  background: #001529;;
+  border: 1px solid #ffffff;
+}
