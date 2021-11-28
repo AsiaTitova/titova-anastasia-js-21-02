@@ -1,50 +1,60 @@
+/* eslint-disable */
+
 import React, { useState, useEffect } from 'react';
 import './PostList.scss';
 import { useHistory } from 'react-router-dom';
 import { Pagination, Spin, Space } from 'antd';
-import { getPostList } from '../../../api/dumMyApi';
 import useOnceOnMount from '../../../utils/useOnceOnMount';
-import { PostType, PostListResponse, ResponseError } from '../../../types/types';
+import { PostType } from '../../../types/types';
+import { PostListState } from '../../../types/state';
 import PostItem from '../PostItem/PostItem';
 import PostCard from '../PostCard/PostCard';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { State } from '../../../types/state';
+import * as actions from '../../../redux/actions/posts';
 
-const PostsList = () => {
-  const [postList, setPostList] = useState([] as Array<PostType>);
+interface Props {
+  posts?: PostListState;
+  loading?: boolean;
+  load: (pageNumber: number, limitNumber: number) => void;
+}
+
+const PostsList = ({ posts, loading, load }: Props) => {
   const [page, setPage] = useState(0 as number);
   const [limit, setLimit] = useState(10 as number);
-  const [total, setTotal] = useState(0 as number);
+  const [total] = useState(0 as number);
   const [pageSizeArray] = useState(['10', '20', '50'] as Array<string>);
-  const [loading, setLoading] = useState(false as boolean);
   const [postCardVisible, setPostCardVisible] = useState(false as boolean);
   const [postId, setPostId] = useState('' as string);
   const history = useHistory();
 
-  const loadPosts = (pageNumber: number, limitNumber: number) => {
-    setLoading(true);
-    getPostList(pageNumber, limitNumber, (resp: PostListResponse) => {
-      setPostList(resp.data);
-      setPage(resp.page);
-      setLimit(resp.limit);
-      setTotal(resp.total);
-      setLoading(false);
-      history.push(`/posts?page=${page}&limit=${limit}`);
-    }, ({ error }: ResponseError) => {
-      error;
-      setLoading(false);
-    });
-  };
-
-  const updateUsers = (pageNumber: number, limitNumber: number) => {
-    setLoading(true);
-    getPostList(pageNumber, limitNumber, (resp: PostListResponse) => {
-      setPostList(resp.data);
-      setLoading(false);
-      history.push(`/posts?page=${page}&limit=${limit}`);
-    }, ({ error }: ResponseError) => {
-      error;
-      setLoading(false);
-    });
-  };
+  // const loadPosts = (pageNumber: number, limitNumber: number) => {
+  //   setLoading(true);
+  //   getPostList(pageNumber, limitNumber, (resp: PostListResponse) => {
+  //     setPostList(resp.data);
+  //     setPage(resp.page);
+  //     setLimit(resp.limit);
+  //     setTotal(resp.total);
+  //     setLoading(false);
+  //     history.push(`/posts?page=${page}&limit=${limit}`);
+  //   }, ({ error }: ResponseError) => {
+  //     error;
+  //     setLoading(false);
+  //   });
+  // };
+  //
+  // const updateUsers = (pageNumber: number, limitNumber: number) => {
+  //   setLoading(true);
+  //   getPostList(pageNumber, limitNumber, (resp: PostListResponse) => {
+  //     setPostList(resp.data);
+  //     setLoading(false);
+  //     history.push(`/posts?page=${page}&limit=${limit}`);
+  //   }, ({ error }: ResponseError) => {
+  //     error;
+  //     setLoading(false);
+  //   });
+  // };
 
   const updatePageNumber = (current: number, limitNumber: number): void => {
     setPage(current);
@@ -52,11 +62,13 @@ const PostsList = () => {
   };
 
   useOnceOnMount(() => {
-    loadPosts(page, limit);
+    load(page, limit);
+    history.push(`/posts?page=${page}&limit=${limit}`);
   });
 
   useEffect(() => {
-    updateUsers(page, limit);
+    load(page, limit);
+    history.push(`/posts?page=${page}&limit=${limit}`);
   }, [page, limit]);
 
   const onPostCardOpen = (id: string): void => {
@@ -78,7 +90,7 @@ const PostsList = () => {
         <>
           <h1 className="post__title">Посты</h1>
           <ul className="post__list">
-            {postList && postList.map((item: PostType, index: number) => (
+            {posts?.posts && posts.posts.map((item: PostType, index: number) => (
               <li className="post__item" key={index}>
                 <PostItem
                   item={item}
@@ -108,4 +120,11 @@ const PostsList = () => {
   );
 };
 
-export default PostsList;
+export default connect(
+  (state: State) => ({
+    posts: state.posts,
+    loading: state.posts.loading,
+    error: state.posts.error,
+  }),
+  (dispatch) => bindActionCreators(actions, dispatch),
+)(PostsList);

@@ -34,6 +34,7 @@ export interface PostType {
   text?: string;
   tags?: Array<string>;
   owner: UserType;
+  loading?: boolean;
 }
 
 export interface PostListResponse extends ListResponseType<PostType> {};

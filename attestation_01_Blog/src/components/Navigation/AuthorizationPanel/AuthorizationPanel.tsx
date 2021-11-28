@@ -3,7 +3,11 @@ import './AuthorizationPanel.scss';
 import { Link } from 'react-router-dom';
 import { MenuItemType } from '../../../types/types';
 
-const AuthorizationPanel = () => {
+interface Props {
+  auth: boolean;
+}
+
+const AuthorizationPanel = ({ auth }: Props) => {
   const [menuList] = useState([
     {
       name: 'Вход',
@@ -17,7 +21,8 @@ const AuthorizationPanel = () => {
 
   return (
     <ul className="navigation__auth">
-      {menuList && menuList.map((item:MenuItemType, index: number) => (
+      {auth && <Link to="/home">Выход</Link>}
+      {!auth && menuList && menuList.map((item:MenuItemType, index: number) => (
         <li className={`navigation__item navigation__item_${item.path.substr(1)}`} key={index}>
           <Link to={item.path && item.path}>
             {item.name && item.name}

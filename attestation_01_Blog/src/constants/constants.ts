@@ -5,6 +5,7 @@ export const METHOD_POST = 'POST';
 
 export const USER_URL = `${BASE_URL}user`;
 export const USER_CREATE_URL = `${BASE_URL}user/create`;
+export const POSTS_BY_USER = `${BASE_URL}user/post`;
 
 export const POSTS_URL = `${BASE_URL}post`;
 
@@ -17,3 +18,38 @@ export const LIMIT_FIELD = 'limit';
 export const DARK_THEME = 'darkTheme';
 
 export const TRUE_STRING = 'true';
+
+// ACTIONS //
+
+export const AUTH_SIGN_IN = 'AUTH/SIGN_IN';
+export const AUTH_LOG_OUT = 'AUTH/LOG_OUT';
+export const AUTH_SUCCESS = 'AUTH/SUCCESS';
+export const AUTH_ERROR = 'AUTH/ERROR';
+
+export const USERS_GET = 'USERS/GET';
+export const USERS_GET_SUCCESS = 'USERS/SUCCESS_GET';
+export const USERS_GET_SUCCESS_MODAL = 'USERS/SUCCESS_GET_MODAL';
+export const USERS_LOAD = 'USERS/LOAD';
+export const USERS_LOAD_SUCCESS = 'USERS/SUCCESS_LOAD';
+export const USERS_ERROR = 'USERS/ERROR';
+export const USERS_SHOW = 'USERS/SHOW';
+export const USERS_HIDE = 'USERS/HIDE';
+export const USERS_CREATE = 'USERS/CREATE';
+export const USERS_UPDATE = 'USERS/UPDATE';
+
+export const AVATAR_UPLOAD = 'AVATAR/UPLOAD';
+export const AVATAR_SUCCESS = 'AVATAR/ERROR';
+
+export const POSTS_SHOW = 'POSTS/SHOW';
+export const POSTS_HIDE = 'POSTS/HIDE';
+export const POSTS_GET = 'POSTS/GET';
+export const POSTS_USER = 'POSTS/LOAD_BY_USER';
+export const POSTS_LOADING = 'POSTS/LOAD';
+export const LOAD_POSTS_SUCCESS = 'POSTS/SUCCESS';
+export const LOAD_POSTS_ERROR = 'POSTS/ERROR';
+
+export const COMMENTS_POST = 'COMMENTS/LOAD_BY_POST';
+export const COMMENTS_USER = 'COMMENTS/LOAD_BY_USER';
+export const COMMENTS_LOAD = 'COMMENTS/LOAD';
+export const COMMENTS_SUCCESS = 'COMMENTS/SUCCESS';
+export const COMMENTS_ERROR = 'COMMENTS/ERROR';

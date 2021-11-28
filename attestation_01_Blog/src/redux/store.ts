@@ -1,4 +1,6 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
+/* eslint-disable */
+import { applyMiddleware, createStore } from 'redux';
+import { useDispatch } from 'react-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
@@ -11,8 +13,11 @@ const middleware = (store: any) => (next: any) => (action: any) => {
 };
 
 const store = createStore(
-  combineReducers(rootReducer),
-  applyMiddleware(thunk, middleware),
+  rootReducer,
+  applyMiddleware(thunk, middleware)
 );
+
+export type AppDispatch = typeof store.dispatch
+export const useAppDispatch = () => useDispatch<AppDispatch>()
 
 export default store;

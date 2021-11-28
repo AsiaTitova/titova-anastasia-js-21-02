@@ -10,9 +10,9 @@ import {
 
 const doGetRequest = <T>(
   path: string,
-  callback: (resp: T) => void,
-  errorCallback?: (resp: ResponseError) => void,
-  finalCallback?: () => void,
+  callback?: (resp: T) => any,
+  errorCallback?: (resp: ResponseError) => any,
+  finalCallback?: () => any,
   searchParams?: Record<string, any>,
 ) => {
   const url = new URL(path, USER_URL);
@@ -33,8 +33,8 @@ const doGetRequest = <T>(
 const doPostRequest = <T>(
   path: string,
   body: T,
-  callback: (resp: T) => void,
-  errorCallback?: (resp: ResponseError) => void,
+  callback: (resp: T) => any,
+  errorCallback?: (resp: ResponseError) => any,
   finalCallback?: () => void,
 ) => {
   const url = new URL(path, USER_CREATE_URL);
@@ -55,7 +55,7 @@ const doPostRequest = <T>(
 export const getUserList = (
   page: number,
   limit: number,
-  callback: (resp: UserListResponse) => void,
+  callback?: (resp: UserListResponse) => any,
   errorCallback?: (resp: any) => void,
   finalCallback?: () => void,
 ) => {
@@ -64,7 +64,7 @@ export const getUserList = (
 
 export const getUserById = (
   id: string,
-  callback: (resp: UserType) => void,
+  callback: (resp: UserType) => any,
   errorCallback?: (resp: ResponseError) => void,
   finalCallback?: () => void,
 ) => {
@@ -73,7 +73,7 @@ export const getUserById = (
 
 export const createUser = (
   body: UserType,
-  callback: (resp: UserType) => void,
+  callback: (resp: UserType) => any,
   errorCallback?: (resp: ResponseError) => void,
   finalCallback?: () => void,
 ) => {
@@ -83,16 +83,16 @@ export const createUser = (
 export const getPostList = (
   page: number,
   limit: number,
-  callback: (resp: PostListResponse) => void,
-  errorCallback?: (resp: any) => void,
-  finalCallback?: () => void,
+  callback?: (resp: PostListResponse) => any,
+  errorCallback?: (resp: any) => any,
+  finalCallback?: () => any,
 ) => {
   doGetRequest(`${POSTS_URL}?${PAGE_FIELD}=${(page - 1).toString()}&${LIMIT_FIELD}=${limit.toString()}`, callback, errorCallback, finalCallback);
 };
 
 export const getPostById = (
   id: string,
-  callback: (resp: PostType) => void,
+  callback: (resp: PostType) => any,
   errorCallback?: (resp: ResponseError) => void,
   finalCallback?: () => void,
 ) => {
@@ -101,7 +101,7 @@ export const getPostById = (
 
 export const getCommentsByPost = (
   id: string,
-  callback: (resp: CommentListResponse) => void,
+  callback: (resp: CommentListResponse) => any,
   errorCallback?: (resp: any) => void,
   finalCallback?: () => void,
 ) => {
