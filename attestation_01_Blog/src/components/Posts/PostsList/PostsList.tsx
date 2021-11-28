@@ -13,63 +13,32 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { State } from '../../../types/state';
 import * as actions from '../../../redux/actions/posts';
+import {updatePageNumber} from "../../../redux/actions/posts";
 
 interface Props {
   posts?: PostListState;
+  page?: any;
+  limit?: any;
+  totalCount?: number;
   loading?: boolean;
-  load: (pageNumber: number, limitNumber: number) => void;
+  load: (pageNumber: number, limitNumber: number) => any;
 }
 
-const PostsList = ({ posts, loading, load }: Props) => {
-  const [page, setPage] = useState(0 as number);
-  const [limit, setLimit] = useState(10 as number);
-  const [total] = useState(0 as number);
+const PostsList = ({ posts, page, limit, totalCount, loading, load }: Props) => {
+  console.log(totalCount)
   const [pageSizeArray] = useState(['10', '20', '50'] as Array<string>);
   const [postCardVisible, setPostCardVisible] = useState(false as boolean);
   const [postId, setPostId] = useState('' as string);
   const history = useHistory();
 
-  // const loadPosts = (pageNumber: number, limitNumber: number) => {
-  //   setLoading(true);
-  //   getPostList(pageNumber, limitNumber, (resp: PostListResponse) => {
-  //     setPostList(resp.data);
-  //     setPage(resp.page);
-  //     setLimit(resp.limit);
-  //     setTotal(resp.total);
-  //     setLoading(false);
-  //     history.push(`/posts?page=${page}&limit=${limit}`);
-  //   }, ({ error }: ResponseError) => {
-  //     error;
-  //     setLoading(false);
-  //   });
-  // };
-  //
-  // const updateUsers = (pageNumber: number, limitNumber: number) => {
-  //   setLoading(true);
-  //   getPostList(pageNumber, limitNumber, (resp: PostListResponse) => {
-  //     setPostList(resp.data);
-  //     setLoading(false);
-  //     history.push(`/posts?page=${page}&limit=${limit}`);
-  //   }, ({ error }: ResponseError) => {
-  //     error;
-  //     setLoading(false);
-  //   });
-  // };
-
   const updatePageNumber = (current: number, limitNumber: number): void => {
-    setPage(current);
-    setLimit(limitNumber);
+    load(current, limitNumber);
   };
-
-  useOnceOnMount(() => {
-    load(page, limit);
-    history.push(`/posts?page=${page}&limit=${limit}`);
-  });
 
   useEffect(() => {
     load(page, limit);
     history.push(`/posts?page=${page}&limit=${limit}`);
-  }, [page, limit]);
+  }, []);
 
   const onPostCardOpen = (id: string): void => {
     if (id) {
@@ -101,10 +70,10 @@ const PostsList = ({ posts, loading, load }: Props) => {
           </ul>
           <div className="post__pagination">
             <Pagination
-              total={total}
-              pageSize={limit}
+              total={totalCount}
+              pageSize={limit && limit}
               pageSizeOptions={pageSizeArray}
-              current={page}
+              current={page && page}
               onChange={updatePageNumber}
             />
           </div>
@@ -123,8 +92,11 @@ const PostsList = ({ posts, loading, load }: Props) => {
 export default connect(
   (state: State) => ({
     posts: state.posts,
+    totalCount: state.posts.total,
+    page: state.posts.page,
+    limit: state.posts.limit,
     loading: state.posts.loading,
     error: state.posts.error,
   }),
-  (dispatch) => bindActionCreators(actions, dispatch),
+  (dispatch: any) => bindActionCreators(actions, dispatch),
 )(PostsList);

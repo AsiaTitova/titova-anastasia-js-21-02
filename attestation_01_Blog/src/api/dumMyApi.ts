@@ -83,10 +83,10 @@ export const createUser = (
 export const getPostList = (
   page: number,
   limit: number,
-  callback?: (resp: PostListResponse) => any,
-  errorCallback?: (resp: any) => any,
-  finalCallback?: () => any,
-) => {
+  callback: (resp: PostListResponse) => void,
+  errorCallback?: (resp: any) => void,
+  finalCallback?: () => void,
+): any => {
   doGetRequest(`${POSTS_URL}?${PAGE_FIELD}=${(page - 1).toString()}&${LIMIT_FIELD}=${limit.toString()}`, callback, errorCallback, finalCallback);
 };
 

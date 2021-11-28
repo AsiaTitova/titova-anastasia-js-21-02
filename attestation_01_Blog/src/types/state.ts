@@ -5,6 +5,9 @@ export interface State {
   users: UserListState;
   comments: CommentListState;
   posts: PostListState;
+  page?: number;
+  limit?: number;
+  total?: number;
   loading?: boolean;
   error?: string;
 }

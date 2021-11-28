@@ -40,13 +40,14 @@ export const USERS_UPDATE = 'USERS/UPDATE';
 export const AVATAR_UPLOAD = 'AVATAR/UPLOAD';
 export const AVATAR_SUCCESS = 'AVATAR/ERROR';
 
-export const POSTS_SHOW = 'POSTS/SHOW';
-export const POSTS_HIDE = 'POSTS/HIDE';
 export const POSTS_GET = 'POSTS/GET';
 export const POSTS_USER = 'POSTS/LOAD_BY_USER';
 export const POSTS_LOADING = 'POSTS/LOAD';
 export const LOAD_POSTS_SUCCESS = 'POSTS/SUCCESS';
 export const LOAD_POSTS_ERROR = 'POSTS/ERROR';
+
+export const SET_PAGE = 'SET_PAGE';
+export const SET_LIMIT = 'SET_LIMIT';
 
 export const COMMENTS_POST = 'COMMENTS/LOAD_BY_POST';
 export const COMMENTS_USER = 'COMMENTS/LOAD_BY_USER';
