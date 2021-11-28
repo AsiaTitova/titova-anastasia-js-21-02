@@ -38,6 +38,16 @@ export interface PostType {
 
 export interface PostListResponse extends ListResponseType<PostType> {};
 
+export interface CommentType {
+  id?: string;
+  message?: string;
+  post?: string;
+  publishDate?: string;
+  owner?: UserType;
+}
+
+export interface CommentListResponse extends ListResponseType<CommentType> {};
+
 export interface ResponseError {
   error: string;
 }

@@ -9,6 +9,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import UserList from './components/Users/UserList/UserList';
 import UserCard from './components/Users/UserCard/UserCard';
+import Home from './components/Home/Home';
 
 const App = () => (
   <ThemeContextProvider>
@@ -28,6 +29,9 @@ const App = () => (
                   </Route>
                   <Route exact path="/users">
                     <UserList />
+                  </Route>
+                  <Route exact path="/">
+                    <Home />
                   </Route>
                 </Switch>
               </main>

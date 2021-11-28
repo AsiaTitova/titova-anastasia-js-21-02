@@ -5,7 +5,7 @@ import {
   UserListResponse,
   ResponseError,
   UserType,
-  PostListResponse,
+  PostListResponse, PostType, CommentListResponse,
 } from '../types/types';
 
 const doGetRequest = <T>(
@@ -88,4 +88,22 @@ export const getPostList = (
   finalCallback?: () => void,
 ) => {
   doGetRequest(`${POSTS_URL}?${PAGE_FIELD}=${(page - 1).toString()}&${LIMIT_FIELD}=${limit.toString()}`, callback, errorCallback, finalCallback);
+};
+
+export const getPostById = (
+  id: string,
+  callback: (resp: PostType) => void,
+  errorCallback?: (resp: ResponseError) => void,
+  finalCallback?: () => void,
+) => {
+  doGetRequest(`post/${id}`, callback, errorCallback, finalCallback);
+};
+
+export const getCommentsByPost = (
+  id: string,
+  callback: (resp: CommentListResponse) => void,
+  errorCallback?: (resp: any) => void,
+  finalCallback?: () => void,
+) => {
+  doGetRequest(`post/${id}/comment`, callback, errorCallback, finalCallback);
 };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import './UserCard.scss';
-import { Button } from 'antd';
+import { Button, Spin, Space } from 'antd';
 import { EditOutlined, DoubleLeftOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import useScrollToTop from '../../../utils/useScrollToTop';
@@ -15,11 +15,19 @@ interface Params {
 const UserCard = () => {
   useScrollToTop();
   const [user, setUser] = useState({} as UserType);
+  const [loading, setLoading] = useState(false as boolean);
   const params = useParams<Params>();
   const history = useHistory();
 
   useEffect(() => {
-    getUserById(params.id, setUser, ({ error }: ResponseError) => error);
+    setLoading(true);
+    getUserById(params.id, (resp: UserType) => {
+      setUser(resp);
+      setLoading(false);
+    }, ({ error }: ResponseError) => {
+      error;
+      setLoading(false);
+    });
   }, []);
 
   const setFormatDate = (date: string | any) => moment(new Date(date)).format('DD.MM.YYYY');
@@ -51,42 +59,51 @@ const UserCard = () => {
 
   return (
     <section className="user-card">
-      <Button type="link" className="user-card__back" icon={<DoubleLeftOutlined />} onClick={history.goBack}>Назад</Button>
-      <div className="user-card__info">
-        <div className="user-card__wrap">
-          { (user.picture) ? <img className="user-card__img" width="100" height="100" alt="аватарка" src={user.picture} /> : <img className="user-card__img" width="100" height="100" alt="аватарка" src="./img/avatar.jpg" />}
-          <h2 className="user-card__name">
-            {`${setTitle(user.gender, user.title)} ${user.firstName} ${user.lastName}`}
-          </h2>
-          <button className="user-card__edit" type="button">
-            <EditOutlined />
-          </button>
-        </div>
-        <ul className="user-card__list">
-          <li className="user-card__content">
-            <span>День рождения:</span>
-            {setFormatDate(user.dateOfBirth)}
-          </li>
-          <li className="user-card__content">
-            <span>Дата регистрации:</span>
-            {setFormatDate(user.registerDate)}
-          </li>
-          <li className="user-card__content">
-            <span>Пол:</span>
-            {setGender(user.gender)}
-          </li>
-        </ul>
-        <ul className="user-card__list">
-          <li className="user-card__content">
-            <span>Email:</span>
-            {user.email}
-          </li>
-          <li className="user-card__content">
-            <span>Телефон:</span>
-            {user.phone}
-          </li>
-        </ul>
-      </div>
+      {loading && (
+        <Space size="middle">
+          <Spin size="large" />
+        </Space>
+      )}
+      {!loading && (
+        <>
+          <Button type="link" className="user-card__back" icon={<DoubleLeftOutlined />} onClick={history.goBack}>Назад</Button>
+          <div className="user-card__info">
+            <div className="user-card__wrap">
+              { (user.picture) ? <img className="user-card__img" width="100" height="100" alt="аватарка" src={user.picture} /> : <img className="user-card__img" width="100" height="100" alt="аватарка" src="./img/avatar.jpg" />}
+              <h2 className="user-card__name">
+                {`${setTitle(user.gender, user.title)} ${user.firstName} ${user.lastName}`}
+              </h2>
+              <button className="user-card__edit" type="button">
+                <EditOutlined />
+              </button>
+            </div>
+            <ul className="user-card__list">
+              <li className="user-card__content">
+                <span>День рождения:</span>
+                {setFormatDate(user.dateOfBirth)}
+              </li>
+              <li className="user-card__content">
+                <span>Дата регистрации:</span>
+                {setFormatDate(user.registerDate)}
+              </li>
+              <li className="user-card__content">
+                <span>Пол:</span>
+                {setGender(user.gender)}
+              </li>
+            </ul>
+            <ul className="user-card__list">
+              <li className="user-card__content">
+                <span>Email:</span>
+                {user.email}
+              </li>
+              <li className="user-card__content">
+                <span>Телефон:</span>
+                {user.phone}
+              </li>
+            </ul>
+          </div>
+        </>
+      )}
     </section>
   );
 };

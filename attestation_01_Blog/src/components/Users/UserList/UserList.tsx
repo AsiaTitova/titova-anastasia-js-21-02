@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './UserList.scss';
+import { useHistory } from 'react-router-dom';
 import { Pagination, Spin, Space } from 'antd';
 import { ResponseError, UserListResponse, UserType } from '../../../types/types';
 import { getUserList } from '../../../api/dumMyApi';
@@ -13,6 +14,7 @@ const UserList = () => {
   const [total, setTotal] = useState(0 as number);
   const [pageSizeArray] = useState(['12', '21', '51'] as Array<string>);
   const [loading, setLoading] = useState(false as boolean);
+  const history = useHistory();
 
   const loadUsers = (pageNumber: number, limitNumber: number) => {
     setLoading(true);
@@ -22,6 +24,7 @@ const UserList = () => {
       setLimit(resp.limit);
       setTotal(resp.total);
       setLoading(false);
+      history.push(`/users?page=${page}&limit=${limit}`);
     }, ({ error }: ResponseError) => {
       error;
       setLoading(false);
@@ -33,6 +36,7 @@ const UserList = () => {
     getUserList(pageNumber, limitNumber, (resp: UserListResponse) => {
       setUserList(resp.data);
       setLoading(false);
+      history.push(`/users?page=${page}&limit=${limit}`);
     }, ({ error }: ResponseError) => {
       error;
       setLoading(false);

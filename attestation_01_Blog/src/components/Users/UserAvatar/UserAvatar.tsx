@@ -9,12 +9,12 @@ interface Props {
 }
 
 const UserAvatar = ({ user }: Props) => (
-  <Link to={`post/${user.id}`}>
+  <Link to={`post/${user.id && user.id}`}>
     <div className="user-avatar">
-      <Avatar src={user.picture} size="large" />
+      <Avatar src={user.picture && user.picture} size="large" />
       <p className="user-avatar__name">
-        <span>{user.firstName}</span>
-        <span>{user.lastName}</span>
+        <span>{user.firstName && user.firstName}</span>
+        <span>{user.lastName && user.lastName}</span>
       </p>
 
     </div>
