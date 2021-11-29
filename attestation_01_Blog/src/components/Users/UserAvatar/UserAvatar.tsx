@@ -2,21 +2,27 @@ import React from 'react';
 import './UserAvatar.scss';
 import { Link } from 'react-router-dom';
 import { Avatar } from 'antd';
-import { UserType } from '../../../types/types';
 
 interface Props {
-  user: UserType;
+  id: string;
+  firstName: string;
+  lastName: string;
+  picture: string;
 }
 
-const UserAvatar = ({ user }: Props) => (
-  <Link to={`post/${user.id && user.id}`}>
+const UserAvatar = ({
+  id,
+  firstName,
+  lastName,
+  picture,
+}: Props) => (
+  <Link to={`user/${id && id}`}>
     <div className="user-avatar">
-      <Avatar src={user.picture && user.picture} size="large" />
+      <Avatar src={picture && picture} size="large" />
       <p className="user-avatar__name">
-        <span>{user.firstName && user.firstName}</span>
-        <span>{user.lastName && user.lastName}</span>
+        <span>{firstName && firstName}</span>
+        <span>{lastName && lastName}</span>
       </p>
-
     </div>
   </Link>
 );

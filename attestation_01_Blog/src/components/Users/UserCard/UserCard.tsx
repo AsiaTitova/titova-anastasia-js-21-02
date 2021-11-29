@@ -1,21 +1,34 @@
+/* eslint-disable */
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import './UserCard.scss';
+import moment from 'moment';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Button, Spin, Space } from 'antd';
 import { EditOutlined, DoubleLeftOutlined } from '@ant-design/icons';
-import moment from 'moment';
+import * as actions from '../../../redux/actions/auth';
 import useScrollToTop from '../../../utils/useScrollToTop';
+import { AuthState, State } from '../../../types/state';
 import { UserType, ResponseError } from '../../../types/types';
 import { getUserById } from '../../../api/dumMyApi';
+import './UserCard.scss';
+import PostCard from "../../Posts/PostCard/PostCard";
+// import UserEditModal from "../UserEditModal/UserEditModal";
 
 interface Params {
   id: string,
 }
 
-const UserCard = () => {
+interface Props {
+  auth: AuthState;
+}
+
+const UserCard = ({ auth }: Props) => {
   useScrollToTop();
   const [user, setUser] = useState({} as UserType);
   const [loading, setLoading] = useState(false as boolean);
+  const [editModalVisible, setEditModalVisible] = useState(false as boolean);
   const params = useParams<Params>();
   const history = useHistory();
 
@@ -57,6 +70,14 @@ const UserCard = () => {
     }
   };
 
+  const onUserEditModalOpen = () => {
+    setEditModalVisible(true);
+  }
+
+  const onUserEditModalClose = () => {
+    setEditModalVisible(false);
+  }
+
   return (
     <section className="user-card">
       {loading && (
@@ -73,9 +94,10 @@ const UserCard = () => {
               <h2 className="user-card__name">
                 {`${setTitle(user.gender, user.title)} ${user.firstName} ${user.lastName}`}
               </h2>
-              <button className="user-card__edit" type="button">
-                <EditOutlined />
-              </button>
+              { auth && auth.id === params.id ? (
+                <button className="user-card__edit" type="button" onClick={onUserEditModalOpen}>
+                  <EditOutlined />
+                </button>) : ''}
             </div>
             <ul className="user-card__list">
               <li className="user-card__content">
@@ -104,8 +126,21 @@ const UserCard = () => {
           </div>
         </>
       )}
+      {/*{editModalVisible && (*/}
+      {/*  <UserEditModal*/}
+      {/*    user={user}*/}
+      {/*    onUserEditModalClose={onUserEditModalClose}*/}
+      {/*  />*/}
+      {/*)}*/}
     </section>
   );
 };
 
-export default UserCard;
+export default connect(
+  (state: State) => ({
+    auth: state.auth,
+    loading: state.auth.loading,
+    error: state.auth.error,
+  }),
+  (dispatch: any) => bindActionCreators(actions, dispatch),
+)(UserCard);

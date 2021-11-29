@@ -2,6 +2,7 @@ const BASE_URL = 'https://dummyapi.io/data/v1/';
 
 export const METHOD_GET = 'GET';
 export const METHOD_POST = 'POST';
+export const METHOD_PUT = 'PUT';
 
 export const USER_URL = `${BASE_URL}user`;
 export const USER_CREATE_URL = `${BASE_URL}user/create`;
@@ -27,13 +28,9 @@ export const AUTH_SUCCESS = 'AUTH/SUCCESS';
 export const AUTH_ERROR = 'AUTH/ERROR';
 
 export const USERS_GET = 'USERS/GET';
-export const USERS_GET_SUCCESS = 'USERS/SUCCESS_GET';
-export const USERS_GET_SUCCESS_MODAL = 'USERS/SUCCESS_GET_MODAL';
+export const USERS_LIST_GET_SUCCESS = 'USERS/SUCCESS_GET';
 export const USERS_LOAD = 'USERS/LOAD';
-export const USERS_LOAD_SUCCESS = 'USERS/SUCCESS_LOAD';
 export const USERS_ERROR = 'USERS/ERROR';
-export const USERS_SHOW = 'USERS/SHOW';
-export const USERS_HIDE = 'USERS/HIDE';
 export const USERS_CREATE = 'USERS/CREATE';
 export const USERS_UPDATE = 'USERS/UPDATE';
 

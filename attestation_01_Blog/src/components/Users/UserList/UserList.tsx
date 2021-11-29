@@ -2,59 +2,41 @@ import React, { useState, useEffect } from 'react';
 import './UserList.scss';
 import { useHistory } from 'react-router-dom';
 import { Pagination, Spin, Space } from 'antd';
-import { ResponseError, UserListResponse, UserType } from '../../../types/types';
-import { getUserList } from '../../../api/dumMyApi';
-import useOnceOnMount from '../../../utils/useOnceOnMount';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { UserListState, State } from '../../../types/state';
+import * as actions from '../../../redux/actions/users';
+import { UserType } from '../../../types/types';
 import UserItem from '../UserItem/UserItem';
 
-const UserList = () => {
-  const [userList, setUserList] = useState([] as Array<UserType>);
-  const [page, setPage] = useState(0 as number);
-  const [limit, setLimit] = useState(12 as number);
-  const [total, setTotal] = useState(0 as number);
+interface Props {
+  users: UserListState;
+  page: any;
+  limit: any;
+  total: any;
+  loading: any;
+  loadUserList: (pageNumber: number, limitNumber: number) => any;
+}
+
+const UserList = ({
+  users,
+  page,
+  limit,
+  total,
+  loading,
+  loadUserList,
+}: Props) => {
   const [pageSizeArray] = useState(['12', '21', '51'] as Array<string>);
-  const [loading, setLoading] = useState(false as boolean);
   const history = useHistory();
 
-  const loadUsers = (pageNumber: number, limitNumber: number) => {
-    setLoading(true);
-    getUserList(pageNumber, limitNumber, (resp: UserListResponse) => {
-      setUserList(resp.data);
-      setPage(resp.page);
-      setLimit(resp.limit);
-      setTotal(resp.total);
-      setLoading(false);
-      history.push(`/users?page=${page}&limit=${limit}`);
-    }, ({ error }: ResponseError) => {
-      error;
-      setLoading(false);
-    });
-  };
-
-  const updateUsers = (pageNumber: number, limitNumber: number) => {
-    setLoading(true);
-    getUserList(pageNumber, limitNumber, (resp: UserListResponse) => {
-      setUserList(resp.data);
-      setLoading(false);
-      history.push(`/users?page=${page}&limit=${limit}`);
-    }, ({ error }: ResponseError) => {
-      error;
-      setLoading(false);
-    });
-  };
-
   const updatePageNumber = (current: number, limitNumber: number): void => {
-    setPage(current);
-    setLimit(limitNumber);
+    loadUserList(current, limitNumber);
   };
-
-  useOnceOnMount(() => {
-    loadUsers(page, limit);
-  });
 
   useEffect(() => {
-    updateUsers(page, limit);
-  }, [page, limit]);
+    loadUserList(page, limit);
+    history.push(`/users?page=${page}&limit=${limit}`);
+  }, []);
 
   return (
     <section className="user">
@@ -67,7 +49,7 @@ const UserList = () => {
         <>
           <h1 className="user__title">Пользователи</h1>
           <ul className="user__list">
-            {userList && userList.map((item: UserType, index: number) => (
+            {users?.users && users.users.map((item: UserType, index: number) => (
               <li className="user__item" key={index}>
                 <UserItem item={item} />
               </li>
@@ -78,7 +60,7 @@ const UserList = () => {
               total={total}
               pageSize={limit}
               pageSizeOptions={pageSizeArray}
-              current={page}
+              current={page + 1}
               onChange={updatePageNumber}
             />
           </div>
@@ -88,4 +70,14 @@ const UserList = () => {
   );
 };
 
-export default UserList;
+export default connect(
+  (state: State) => ({
+    users: state.users,
+    total: state.users.total,
+    page: state.users.page,
+    limit: state.users.limit,
+    loading: state.users.loading,
+    error: state.users.error,
+  }),
+  (dispatch: any) => bindActionCreators(actions, dispatch),
+)(UserList);

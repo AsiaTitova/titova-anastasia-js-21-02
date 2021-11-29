@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   Route, Switch, BrowserRouter as Router,
 } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from './redux/actions/auth';
+import { State, AuthState } from './types/state';
 import './App.scss';
 import { ThemeContext, ThemeContextProvider, ThemeContextState } from './context/ThemeContext';
 import PostsList from './components/Posts/PostsList/PostsList';
@@ -11,18 +15,21 @@ import UserList from './components/Users/UserList/UserList';
 import UserCard from './components/Users/UserCard/UserCard';
 import Home from './components/Home/Home';
 import { Login } from './components/Autorization/LogIn/Login';
-import useOnceOnMount from './utils/useOnceOnMount';
+import Signin from './components/Autorization/SignIn/Signin';
+import { getAuthUser } from './utils/getAuthUser';
 
-const App = () => {
-  const [auth, setAuth] = useState(false as boolean);
+interface Props {
+  auth: AuthState;
+  login: (id: string) => any;
+}
 
-  useOnceOnMount(() => {
-    if (window.localStorage.getItem('user_id')) {
-      setAuth(true);
-    } else {
-      setAuth(false);
+const App = ({ auth, login }: Props) => {
+  useEffect(() => {
+    if (!auth.id) {
+      const user = getAuthUser();
+      user && user.id && login(user.id);
     }
-  });
+  }, []);
 
   return (
     <ThemeContextProvider>
@@ -31,7 +38,7 @@ const App = () => {
           (context: Partial<ThemeContextState>) => (
             <div className={`app ${context.darkTheme ? 'dark-theme' : ''}`}>
               <Router>
-                <Header auth={auth} />
+                <Header />
                 <main className="main">
                   <Switch>
                     <Route exact path="/posts">
@@ -45,6 +52,9 @@ const App = () => {
                     </Route>
                     <Route exact path="/login">
                       <Login />
+                    </Route>
+                    <Route exact path="/signin">
+                      <Signin />
                     </Route>
                     <Route exact path="/">
                       <Home />
@@ -61,4 +71,11 @@ const App = () => {
   );
 };
 
-export default App;
+export default connect(
+  (state: State) => ({
+    auth: state.auth,
+    loading: state.auth.loading,
+    error: state.auth.error,
+  }),
+  (dispatch: any) => bindActionCreators(actions, dispatch),
+)(App);

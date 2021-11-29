@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import './PostList.scss';
 import { useHistory } from 'react-router-dom';
 import { Pagination, Spin, Space } from 'antd';
-import useOnceOnMount from '../../../utils/useOnceOnMount';
 import { PostType } from '../../../types/types';
 import { PostListState } from '../../../types/state';
 import PostItem from '../PostItem/PostItem';
@@ -13,7 +12,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { State } from '../../../types/state';
 import * as actions from '../../../redux/actions/posts';
-import {updatePageNumber} from "../../../redux/actions/posts";
 
 interface Props {
   posts?: PostListState;
@@ -25,7 +23,6 @@ interface Props {
 }
 
 const PostsList = ({ posts, page, limit, totalCount, loading, load }: Props) => {
-  console.log(totalCount)
   const [pageSizeArray] = useState(['10', '20', '50'] as Array<string>);
   const [postCardVisible, setPostCardVisible] = useState(false as boolean);
   const [postId, setPostId] = useState('' as string);
@@ -71,9 +68,9 @@ const PostsList = ({ posts, page, limit, totalCount, loading, load }: Props) => 
           <div className="post__pagination">
             <Pagination
               total={totalCount}
-              pageSize={limit && limit}
+              pageSize={limit}
               pageSizeOptions={pageSizeArray}
-              current={page && page}
+              current={page + 1}
               onChange={updatePageNumber}
             />
           </div>

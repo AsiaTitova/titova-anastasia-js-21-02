@@ -5,8 +5,12 @@ export interface Action {
 }
 
 export interface AuthAction extends Action {
+  auth?: boolean;
   id?: string;
-  user?: UserType;
+  firstName?: string;
+  lastName?: string;
+  picture?: string;
+  loading?: boolean;
   error?: string;
 }
 
@@ -17,13 +21,14 @@ export interface CreateUserAction extends Action {
 }
 
 export interface UsersAction extends Action {
-  avatar?: Blob;
-  users?: Array<UserType>;
+  avatar?: Blob | any;
+  users?: Array<UserType> | undefined;
   user?: UserType;
   id?: string;
   total?: number;
   page?: number;
-  pageSize?: number;
+  limit?: number;
+  loading?: boolean;
   error?: string;
   edit?: boolean;
 }

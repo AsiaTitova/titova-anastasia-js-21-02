@@ -1,13 +1,24 @@
+/* eslint-disable */
+
 import React, { useState } from 'react';
-import './AuthorizationPanel.scss';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../../../redux/actions/posts';
+import { State } from '../../../types/state';
 import { MenuItemType } from '../../../types/types';
+import UserAvatar from '../../Users/UserAvatar/UserAvatar';
+import './AuthorizationPanel.scss';
 
 interface Props {
-  auth: boolean;
+  auth?: boolean;
+  id?: string;
+  firstName?: string;
+  lastName?: string;
+  picture?: string;
 }
 
-const AuthorizationPanel = ({ auth }: Props) => {
+const AuthorizationPanel = ({ auth, id, firstName, lastName, picture, }: Props) => {
   const [menuList] = useState([
     {
       name: 'Вход',
@@ -19,9 +30,21 @@ const AuthorizationPanel = ({ auth }: Props) => {
     },
   ] as Array<MenuItemType>);
 
+  const logOut = () => {
+    window.localStorage.removeItem('user');
+    window.localStorage.removeItem('user_id');
+    window.localStorage.removeItem('auth');
+    location.reload();
+  };
+
   return (
     <ul className="navigation__auth">
-      {auth && <Link to="/home">Выход</Link>}
+      {auth && id && firstName && lastName && picture && (
+        <>
+          <UserAvatar id={id} firstName={firstName} lastName={lastName} picture={picture} />
+          <Link to="/" className="navigation__logout" onClick={logOut}>Выход</Link>
+        </>
+      )}
       {!auth && menuList && menuList.map((item:MenuItemType, index: number) => (
         <li className={`navigation__item navigation__item_${item.path.substr(1)}`} key={index}>
           <Link to={item.path && item.path}>
@@ -33,4 +56,13 @@ const AuthorizationPanel = ({ auth }: Props) => {
   );
 };
 
-export default AuthorizationPanel;
+export default connect(
+  (state: State) => ({
+    auth: state.auth.auth,
+    id: state.auth.id,
+    firstName: state.auth.firstName,
+    lastName: state.auth.lastName,
+    picture: state.auth.picture,
+  }),
+  (dispatch: any) => bindActionCreators(actions, dispatch),
+)(AuthorizationPanel);

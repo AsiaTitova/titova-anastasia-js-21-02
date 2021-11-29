@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import './PostCard.scss';
 import { Spin, Space } from 'antd';
@@ -54,7 +55,14 @@ const UserCard = ({ postId, onPostCardClose }: Props) => {
         {!loading && (
           <>
             <div className="post-card__head">
-              {post.owner && <UserAvatar user={post.owner} /> }
+              {post.owner.id && post.owner.id && post.owner.lastName && post.owner.picture &&
+                <UserAvatar
+                  id={post.owner.id}
+                  firstName={post.owner.id}
+                  lastName={post.owner.lastName}
+                  picture={post.owner.picture}
+                />
+              }
               <p className="post-card__publish">
                 <span>{post.publishDate && post.publishDate.split('T')[0].split('-').reverse().join('.')}</span>
                 <span> в </span>

@@ -14,20 +14,22 @@ export interface State {
 
 export interface AuthState {
   error?: string;
+  auth?: boolean;
   id?: string;
-  username?: string;
-  avatarImg?: string;
+  firstName?: string;
+  lastName?: string;
+  picture?: string;
   loading?: boolean;
 }
 
 export interface UserListState {
   error?: string;
   edit?: boolean;
-  user: UserType;
-  users: Array<UserType>;
-  page: number;
-  pageSize: number;
-  total: number;
+  user?: UserType;
+  users?: Array<UserType>;
+  page?: number;
+  limit?: number;
+  total?: number;
   loading?: boolean;
 }
 

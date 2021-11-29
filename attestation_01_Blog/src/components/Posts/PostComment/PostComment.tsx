@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from 'react';
 import './PostComment.scss';
 import { CommentType } from '../../../types/types';
@@ -10,7 +12,14 @@ interface Props {
 const PostComment = ({ item }: Props) => (
   <li className="comment__item">
     <div className="comment__head">
-      {item.owner && <UserAvatar user={item.owner} />}
+      {item.owner && item.owner.id && item.owner.id && item.owner.lastName && item.owner.picture &&
+      <UserAvatar
+        id={item.owner.id}
+        firstName={item.owner.id}
+        lastName={item.owner.lastName}
+        picture={item.owner.picture}
+      />
+      }
       <p className="comment__publish">
         <span>{item.publishDate && item.publishDate.split('T')[0].split('-').reverse().join('.')}</span>
         <span> в </span>

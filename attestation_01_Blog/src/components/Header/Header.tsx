@@ -4,16 +4,12 @@ import './Header.scss';
 import NavigationList from '../Navigation/NavigationList/NavigationList';
 import AuthorizationPanel from '../Navigation/AuthorizationPanel/AuthorizationPanel';
 
-interface Props {
-  auth: boolean;
-}
-
-const Header = ({ auth }: Props) => (
+const Header = () => (
   <header className="header">
     <div className="header__container">
       <div className="header__logo logo"><Link to="/">Dogs Blog</Link></div>
       <NavigationList />
-      <AuthorizationPanel auth={auth} />
+      <AuthorizationPanel />
     </div>
   </header>
 );

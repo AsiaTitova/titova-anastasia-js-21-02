@@ -8,6 +8,10 @@ import {
 } from 'antd';
 import { UserOutlined, MailOutlined } from '@ant-design/icons';
 import locale from 'antd/es/date-picker/locale/ru_RU';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../../../redux/actions/posts';
+import { State } from '../../../types/state';
 import { createUser } from '../../../api/dumMyApi';
 import { UserType } from '../../../types/types';
 
@@ -182,3 +186,11 @@ export const Login = () => {
       </div>
     );
 };
+
+export default connect(
+  (state: State) => ({
+    loading: state.posts.loading,
+    error: state.posts.error,
+  }),
+  (dispatch: any) => bindActionCreators(actions, dispatch),
+)(Login);

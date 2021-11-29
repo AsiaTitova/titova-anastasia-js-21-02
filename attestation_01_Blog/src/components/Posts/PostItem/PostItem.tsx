@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import './PostItem.scss';
 import { PostType } from '../../../types/types';
@@ -11,7 +12,13 @@ interface Props {
 const UserItem = ({ item, onPostCardOpen }: Props) => (
   <div className="post__card" onClick={() => item.id && onPostCardOpen(item.id)}>
     <div className="post__head">
-      <UserAvatar user={item.owner && item.owner} />
+      {item.owner && item.owner.id && item.owner.id && item.owner.lastName && item.owner.picture && (
+        <UserAvatar
+          id={item.owner.id}
+          firstName={item.owner.id}
+          lastName={item.owner.lastName}
+          picture={item.owner.picture}
+        />)}
       <p className="post__publish">
         <span>{item.publishDate && item.publishDate.split('T')[0].split('-').reverse().join('.')}</span>
         <span> в </span>

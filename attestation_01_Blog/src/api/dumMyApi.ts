@@ -1,5 +1,14 @@
 import {
-  APP_ID_FIELD, APP_ID_VALUE, USER_URL, LIMIT_FIELD, PAGE_FIELD, METHOD_GET, METHOD_POST, USER_CREATE_URL, POSTS_URL,
+  APP_ID_FIELD,
+  APP_ID_VALUE,
+  USER_URL,
+  LIMIT_FIELD,
+  PAGE_FIELD,
+  METHOD_GET,
+  METHOD_POST,
+  USER_CREATE_URL,
+  POSTS_URL,
+  METHOD_PUT,
 } from '../constants/constants';
 import {
   UserListResponse,
@@ -52,6 +61,28 @@ const doPostRequest = <T>(
     .finally(finalCallback);
 };
 
+const doPutRequest = <T>(
+  path: string,
+  body: T,
+  callback: (resp: T) => any,
+  errorCallback?: (resp: ResponseError) => any,
+  finalCallback?: () => void,
+) => {
+  const url = new URL(path, USER_URL);
+  const bodyInfo = JSON.stringify(body);
+  fetch(url.toString(), {
+    method: METHOD_PUT,
+    headers: new Headers({
+      [APP_ID_FIELD]: APP_ID_VALUE,
+      'Content-Type': 'application/json',
+    }),
+    body: bodyInfo,
+  }).then((resp) => resp.json())
+    .then(callback)
+    .catch(errorCallback)
+    .finally(finalCallback);
+};
+
 export const getUserList = (
   page: number,
   limit: number,
@@ -63,11 +94,11 @@ export const getUserList = (
 };
 
 export const getUserById = (
-  id: string,
-  callback: (resp: UserType) => any,
+  id?: string,
+  callback?: (resp: UserType) => any,
   errorCallback?: (resp: ResponseError) => void,
   finalCallback?: () => void,
-) => {
+): any => {
   doGetRequest(`user/${id}`, callback, errorCallback, finalCallback);
 };
 
@@ -78,6 +109,16 @@ export const createUser = (
   finalCallback?: () => void,
 ) => {
   doPostRequest(USER_CREATE_URL, body, callback, errorCallback, finalCallback);
+};
+
+export const updateUser = (
+  body: UserType,
+  id: string,
+  callback: (resp: UserType) => any,
+  errorCallback?: (resp: ResponseError) => void,
+  finalCallback?: () => void,
+) => {
+  doPutRequest(`user/${id}`, body, callback, errorCallback, finalCallback);
 };
 
 export const getPostList = (
