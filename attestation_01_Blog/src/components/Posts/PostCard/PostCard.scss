@@ -18,6 +18,22 @@
     border-radius: 4px;
     border: 1px solid #F1EFFA;
     box-shadow: 0 0 2px rgba(167, 169, 192, 0.4), 0 3px 10px rgba(167, 169, 192, 0.3);
+
+    @media (max-width: 850px) {
+      width: 700px;
+      min-height: 600px;
+      max-height: 600px;
+    }
+
+    @media (max-width: 768px) {
+      width: 400px;
+    }
+
+    @media (max-width: 568px) {
+      width: 280px;
+      min-height: 500px;
+      max-height: 500px;
+    }
   }
 
   &__head {
@@ -30,6 +46,14 @@
   &__content {
     overflow-y: scroll;
     max-height: calc(800px - 85px);
+
+    @media (max-width: 850px) {
+      max-height: calc(600px - 85px);
+    }
+
+    @media (max-width: 568px) {
+      max-height: calc(500px - 85px);
+    }
   }
 
   &__image {

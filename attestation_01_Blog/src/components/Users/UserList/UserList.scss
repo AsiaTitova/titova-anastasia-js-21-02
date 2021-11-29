@@ -4,6 +4,10 @@
   padding: 32px 0;
   margin: 0 auto;
 
+  @media (max-width: 1024px) {
+    width: 90%;
+  }
+
   .ant-space {
     padding: 200px 50%;
     justify-content: center;

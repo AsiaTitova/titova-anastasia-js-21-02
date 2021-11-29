@@ -79,7 +79,8 @@ p {
   background: #000;
 }
 
-.dark-theme .comment__head {
+.dark-theme .comment__head,
+.dark-theme .menu__list {
   background: #131313;
 }
 
@@ -139,6 +140,8 @@ p {
 .dark-theme .ant-spin,
 .dark-theme .navigation__logout,
 .dark-theme .signin__link a,
+.dark-theme .menu__item a,
+.dark-theme .menu__logout,
 .dark-theme .navigation__logout:hover,
 .dark-theme .navigation__logout:focus,
 .dark-theme .logo a {
@@ -173,6 +176,7 @@ p {
 .dark-theme .ant-pagination-item:focus-visible,
 .dark-theme .ant-pagination-item:hover,
 .dark-theme .ant-pagination-item:hover,
+.dark-theme .menu__button,
 .dark-theme .ant-pagination-prev:focus-visible .ant-pagination-item-link,
 .dark-theme .ant-pagination-next:focus-visible .ant-pagination-item-link,
 .dark-theme .ant-pagination-prev:hover .ant-pagination-item-link,
