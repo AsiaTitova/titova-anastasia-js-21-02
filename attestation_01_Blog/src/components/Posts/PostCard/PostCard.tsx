@@ -14,8 +14,8 @@ import UserAvatar from '../../Users/UserAvatar/UserAvatar';
 import PostComment from '../PostComment/PostComment';
 
 interface Props {
-  postId: string;
-  onPostCardClose: () => void;
+  postId: string | any;
+  onPostCardClose?: () => void;
 }
 
 const UserCard = ({ postId, onPostCardClose }: Props) => {
@@ -55,10 +55,10 @@ const UserCard = ({ postId, onPostCardClose }: Props) => {
         {!loading && (
           <>
             <div className="post-card__head">
-              {post.owner.id && post.owner.id && post.owner.lastName && post.owner.picture &&
+              {post.owner && post.owner.id && post.owner.firstName && post.owner.lastName && post.owner.picture &&
                 <UserAvatar
                   id={post.owner.id}
-                  firstName={post.owner.id}
+                  firstName={post.owner.firstName}
                   lastName={post.owner.lastName}
                   picture={post.owner.picture}
                 />

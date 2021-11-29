@@ -7,7 +7,7 @@ import {
   POSTS_LOADING, LOAD_POSTS_ERROR, LOAD_POSTS_SUCCESS, SET_LIMIT, SET_PAGE,
 } from '../../constants/constants';
 
-import { getPostList } from "../../api/dumMyApi";
+import {getPostById, getPostList} from "../../api/dumMyApi";
 
 const loadSuccessAction = (posts: Array<PostType>, total: number, page: number, limit: number): PostsAction => ({
   type: LOAD_POSTS_SUCCESS,

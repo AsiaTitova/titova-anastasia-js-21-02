@@ -3,6 +3,7 @@ import { CommentType, PostType, UserType } from './types';
 export interface State {
   auth: AuthState;
   users: UserListState;
+  user: UserType;
   comments: CommentListState;
   posts: PostListState;
   page?: number;
@@ -19,10 +20,12 @@ export interface AuthState {
   firstName?: string;
   lastName?: string;
   picture?: string;
+  user?: UserType;
   loading?: boolean;
 }
 
 export interface UserListState {
+  posts?: Array<PostType>;
   error?: string;
   edit?: boolean;
   user?: UserType;

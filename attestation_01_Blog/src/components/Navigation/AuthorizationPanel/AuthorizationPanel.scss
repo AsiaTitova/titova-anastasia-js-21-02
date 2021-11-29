@@ -31,7 +31,10 @@
 
   &__logout {
     margin-left: 32px;
+    border: none;
     border-left: 1px solid #F1EFFA;
     padding-left: 32px;
+    background: transparent;
+    cursor: pointer;
   }
 }

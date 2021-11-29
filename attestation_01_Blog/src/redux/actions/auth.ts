@@ -14,6 +14,7 @@ import { getUserById } from "../../api/dumMyApi";
 const loadSuccessAction = (user: UserType): AuthAction => ({
   type:  AUTH_SUCCESS,
   auth: true,
+  user: user,
   id: user.id,
   firstName: user.firstName,
   lastName: user.lastName,

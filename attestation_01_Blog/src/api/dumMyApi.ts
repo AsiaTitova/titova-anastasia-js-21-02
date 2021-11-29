@@ -89,7 +89,7 @@ export const getUserList = (
   callback?: (resp: UserListResponse) => any,
   errorCallback?: (resp: any) => void,
   finalCallback?: () => void,
-) => {
+): any => {
   doGetRequest(`${USER_URL}?${PAGE_FIELD}=${(page - 1).toString()}&${LIMIT_FIELD}=${limit.toString()}`, callback, errorCallback, finalCallback);
 };
 
@@ -102,12 +102,22 @@ export const getUserById = (
   doGetRequest(`user/${id}`, callback, errorCallback, finalCallback);
 };
 
+export const getUsersPostById = (
+  id: string,
+  page: number,
+  limit: number,
+  callback?: (resp: UserType) => any,
+  errorCallback?: (resp: ResponseError) => void,
+): any => {
+  doGetRequest(`user/${id}/post?${PAGE_FIELD}=${(page - 1).toString()}&${LIMIT_FIELD}=${limit.toString()}`, callback, errorCallback);
+};
+
 export const createUser = (
   body: UserType,
   callback: (resp: UserType) => any,
   errorCallback?: (resp: ResponseError) => void,
   finalCallback?: () => void,
-) => {
+): any => {
   doPostRequest(USER_CREATE_URL, body, callback, errorCallback, finalCallback);
 };
 

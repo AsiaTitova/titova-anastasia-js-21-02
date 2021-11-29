@@ -1,4 +1,5 @@
 import { PostType, UserType, CommentType } from './types';
+import {PostListState} from "./state";
 
 export interface Action {
   type: string;
@@ -6,6 +7,7 @@ export interface Action {
 
 export interface AuthAction extends Action {
   auth?: boolean;
+  user?: UserType;
   id?: string;
   firstName?: string;
   lastName?: string;
@@ -24,6 +26,7 @@ export interface UsersAction extends Action {
   avatar?: Blob | any;
   users?: Array<UserType> | undefined;
   user?: UserType;
+  posts?: any;
   id?: string;
   total?: number;
   page?: number;

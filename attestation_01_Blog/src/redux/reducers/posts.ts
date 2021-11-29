@@ -3,7 +3,7 @@ import produce from 'immer';
 import { PostListState } from '../../types/state';
 import { PostsAction } from "../../types/actions";
 import {
-  POSTS_LOADING, LOAD_POSTS_ERROR, LOAD_POSTS_SUCCESS, SET_LIMIT, SET_PAGE,
+  POSTS_LOADING, LOAD_POSTS_ERROR, LOAD_POSTS_SUCCESS, SET_LIMIT, SET_PAGE, POSTS_USER,
 } from '../../constants/constants';
 import { PostType } from '../../types/types';
 
@@ -52,6 +52,7 @@ export default (state = initialState, action: PostsAction) => produce(
     switch (action.type) {
       case POSTS_LOADING: return showLoading(draft);
       case LOAD_POSTS_SUCCESS: return loadSuccess(draft, action.posts, action.total, action.page, action.limit);
+      case POSTS_USER: return loadSuccess(draft, action.posts, action.total, action.page, action.limit);
       case SET_LIMIT: return setLimit(draft, action.limit);
       case SET_PAGE: return setPage(draft, action.page);
       case LOAD_POSTS_ERROR: return loadError(draft, action.error);

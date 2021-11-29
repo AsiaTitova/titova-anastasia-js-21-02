@@ -12,6 +12,7 @@ import { AuthAction } from '../../types/actions';
 
 const initialState: AuthState = {
   auth: false,
+  user: {},
   id: '',
   firstName: '',
   lastName: '',
@@ -27,6 +28,7 @@ const loadingAuth = (draft: AuthAction) => {
 
 const authSuccess = (draft: AuthAction, resp: UserType) => {
   draft.auth = true;
+  draft.user = resp;
   draft.id = resp.id;
   draft.firstName = resp.firstName;
   draft.lastName = resp.lastName;
@@ -37,6 +39,7 @@ const authSuccess = (draft: AuthAction, resp: UserType) => {
 
 const authLogOut = (draft: AuthAction) => {
   draft.auth = false;
+  draft.user = {};
   draft.id = '';
   draft.firstName = '';
   draft.lastName = '';

@@ -31,6 +31,7 @@ const App = ({ auth, login }: Props) => {
     }
   }, []);
 
+  // @ts-ignore
   return (
     <ThemeContextProvider>
       <ThemeContext.Consumer>

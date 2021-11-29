@@ -42,7 +42,7 @@ const AuthorizationPanel = ({ auth, id, firstName, lastName, picture, }: Props) 
       {auth && id && firstName && lastName && picture && (
         <>
           <UserAvatar id={id} firstName={firstName} lastName={lastName} picture={picture} />
-          <Link to="/" className="navigation__logout" onClick={logOut}>Выход</Link>
+          <button className="navigation__logout" onClick={logOut} type="button">Выход</button>
         </>
       )}
       {!auth && menuList && menuList.map((item:MenuItemType, index: number) => (

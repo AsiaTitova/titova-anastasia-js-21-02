@@ -6,7 +6,6 @@ export const METHOD_PUT = 'PUT';
 
 export const USER_URL = `${BASE_URL}user`;
 export const USER_CREATE_URL = `${BASE_URL}user/create`;
-export const POSTS_BY_USER = `${BASE_URL}user/post`;
 
 export const POSTS_URL = `${BASE_URL}post`;
 
@@ -17,7 +16,6 @@ export const PAGE_FIELD = 'page';
 export const LIMIT_FIELD = 'limit';
 
 export const DARK_THEME = 'darkTheme';
-
 export const TRUE_STRING = 'true';
 
 // ACTIONS //
@@ -34,10 +32,6 @@ export const USERS_ERROR = 'USERS/ERROR';
 export const USERS_CREATE = 'USERS/CREATE';
 export const USERS_UPDATE = 'USERS/UPDATE';
 
-export const AVATAR_UPLOAD = 'AVATAR/UPLOAD';
-export const AVATAR_SUCCESS = 'AVATAR/ERROR';
-
-export const POSTS_GET = 'POSTS/GET';
 export const POSTS_USER = 'POSTS/LOAD_BY_USER';
 export const POSTS_LOADING = 'POSTS/LOAD';
 export const LOAD_POSTS_SUCCESS = 'POSTS/SUCCESS';

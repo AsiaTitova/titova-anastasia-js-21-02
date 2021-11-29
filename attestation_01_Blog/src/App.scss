@@ -111,11 +111,13 @@ p {
 .dark-theme .comments__title,
 .dark-theme .comment__text,
 .dark-theme .promo__title,
+.dark-theme .login__enter,
 .dark-theme .post__text {
   color: #ffffff;
 }
 
-.dark-theme .post-card__close svg {
+.dark-theme .post-card__close svg,
+.dark-theme .user-card__edit svg {
   fill: #ffffff;
 
   &:hover {
@@ -135,6 +137,10 @@ p {
 .dark-theme .ant-select-arrow,
 .dark-theme .user-card__back:hover,
 .dark-theme .ant-spin,
+.dark-theme .navigation__logout,
+.dark-theme .signin__link a,
+.dark-theme .navigation__logout:hover,
+.dark-theme .navigation__logout:focus,
 .dark-theme .logo a {
   color: #f68121;
 }
@@ -157,7 +163,15 @@ p {
   border-bottom: 2px solid #f68121;
 }
 
+.dark-theme .login__enter:hover,
+.dark-theme .login__enter:focus,
+.dark-theme .login__enter {
+  border-color: #f68121;
+  background: #f68121;
+}
+
 .dark-theme .ant-pagination-item:focus-visible,
+.dark-theme .ant-pagination-item:hover,
 .dark-theme .ant-pagination-item:hover,
 .dark-theme .ant-pagination-prev:focus-visible .ant-pagination-item-link,
 .dark-theme .ant-pagination-next:focus-visible .ant-pagination-item-link,

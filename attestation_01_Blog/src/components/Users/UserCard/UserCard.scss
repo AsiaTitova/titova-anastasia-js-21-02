@@ -39,6 +39,17 @@
     margin: 0 0 24px;
   }
 
+  &__name-wrap {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__name {
+    margin: 0 0 44px;
+  }
+
   &__img {
     display: block;
     margin-right: 16px;
@@ -60,6 +71,13 @@
   &__content {
     width: 50%;
     margin: 0 0 24px;
+    font-size: 14px;
+    line-height: 20px;
+
+    &_id {
+      width: 100%;
+      margin: 0;
+    }
 
     span {
       margin-right: 16px;

@@ -16,12 +16,12 @@ const UserAvatar = ({
   lastName,
   picture,
 }: Props) => (
-  <Link to={`user/${id && id}`}>
+  <Link to={`user/${id}`}>
     <div className="user-avatar">
-      <Avatar src={picture && picture} size="large" />
+      <Avatar src={picture} size="large" />
       <p className="user-avatar__name">
-        <span>{firstName && firstName}</span>
-        <span>{lastName && lastName}</span>
+        <span>{firstName}</span>
+        <span>{lastName}</span>
       </p>
     </div>
   </Link>

@@ -10,10 +10,12 @@ import {
   USERS_UPDATE,
   SET_LIMIT,
   SET_PAGE,
+  POSTS_USER,
 } from '../../constants/constants';
-import { UserType } from '../../types/types';
+import {PostType, UserType} from '../../types/types';
 import { UsersAction } from '../../types/actions';
-import { createUser, getUserById, getUserList } from '../../api/dumMyApi';
+import {createUser, getUserById, getUserList, getUsersPostById} from '../../api/dumMyApi';
+import {PostListState} from "../../types/state";
 
 const showLoadingAction = (): UsersAction => ({
   type: USERS_LOAD,
@@ -36,9 +38,18 @@ const loadUserListSuccessAction = (users: Array<UserType>, total: number, page: 
   error: '',
 });
 
+const loadPostsCurrentUserSuccessAction = (posts: any, page: number, limit: number, total: number): UsersAction => ({
+  type: POSTS_USER,
+  posts: posts,
+  total: total,
+  page: page,
+  limit: limit,
+  loading: false,
+  error: '',
+});
+
 const loadCurrentUserSuccessAction = (user: UserType): UsersAction => ({
   type:  USERS_GET,
-  avatar: '',
   user: user,
   loading: false,
   error: '',
@@ -67,8 +78,17 @@ export const loadUserList = (pageNum: number, pageSize: number): any => {
 export const getCurrentUser = (id: string): any => {
   return (dispatch: Dispatch) => {
     dispatch(showLoadingAction());
-    getUserById(id, (resp: any) => {
+    getUserById(id, (resp: UserType) => {
       dispatch(loadCurrentUserSuccessAction(resp));
+    }, (error: any) => dispatch(loadErrorAction(error)))
+  };
+};
+
+export const loadUserPosts = (id: string, pageNum: number, pageSize: number): any => {
+  return (dispatch: Dispatch) => {
+    dispatch(showLoadingAction());
+    getUsersPostById(id, pageNum, pageSize, (resp: any) => {
+      dispatch(loadPostsCurrentUserSuccessAction(resp.data, resp.page, resp.limit, resp.total));
     }, (error: any) => dispatch(loadErrorAction(error)))
   };
 };
