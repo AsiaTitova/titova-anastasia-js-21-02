@@ -62,7 +62,7 @@ const Signin = ({ login }: Props) => {
             </Button>
             <p className="signin__link">
               Ещё нет аккаунта?
-              <Link to="/signin">Зарегистрироваться</Link>
+              <Link to="/login">Зарегистрироваться</Link>
             </p>
           </div>
         </Form>

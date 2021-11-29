@@ -173,7 +173,7 @@ export const Login = () => {
               <Input />
             </Form.Item>
             <div className="login__footer">
-              <Button type="primary" htmlType="submit">
+              <Button type="primary" className="login__enter" htmlType="submit">
                 Регистрация
               </Button>
               <p className="login__link">

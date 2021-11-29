@@ -80,7 +80,7 @@ const MenuMobile = ({ auth, id }: Props) => {
               </Link>
             </li>
           ))}
-          {!auth && id && authMenuList && authMenuList.map((item, index) => (
+          {!auth && authMenuList && authMenuList.map((item, index) => (
             <li className="menu__item" key={index}>
               <Link to={item.path}>
                 <span className="menu__icon">
