@@ -24,6 +24,7 @@ interface Props {
 }
 
 const MenuMobile = ({ auth, id }: Props) => {
+  const [authUserId] = useState(window.localStorage.getItem('user_id') as string);
   const [visibleMenu, setVisibleMenu] = useState(false as boolean);
   const [menuList] = useState([
     {
@@ -51,7 +52,7 @@ const MenuMobile = ({ auth, id }: Props) => {
   const [userMenuList] = useState([
     {
       name: 'Личный кабинет',
-      path: `/user/${id}`,
+      path: `/user/${id || authUserId.slice(1, -1)}`,
       icon: 'profile',
     }
   ] as Array<MenuItemType>);

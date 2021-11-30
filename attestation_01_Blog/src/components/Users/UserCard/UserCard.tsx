@@ -15,6 +15,7 @@ import './UserCard.scss';
 import PostCard from "../../Posts/PostCard/PostCard";
 import PostItem from "../../Posts/PostItem/PostItem";
 import UserEditModal from "../UserEditModal/UserEditModal";
+import {TRUE_STRING} from "../../../constants/constants";
 
 interface Params {
   id: string,
@@ -42,8 +43,13 @@ const UserCard = ({ auth, user, posts, page, limit, total, loading, getCurrentUs
   const history = useHistory();
 
   useEffect(() => {
-    getCurrentUser(params.id);
-    loadUserPosts(params.id, page, limit);
+    if (page && limit) {
+      getCurrentUser(params.id);
+      loadUserPosts(params.id, page, limit);
+    } else {
+      getCurrentUser(params.id);
+      loadUserPosts(params.id, 0, 10);
+    }
   }, []);
 
   const updatePageNumber = (current: number, limitNumber: number): void => {
