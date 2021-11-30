@@ -13,9 +13,8 @@ import {AuthState, PostListState, State} from '../../../types/state';
 import { UserType, PostType } from '../../../types/types';
 import './UserCard.scss';
 import PostCard from "../../Posts/PostCard/PostCard";
-import {loadUserPosts} from "../../../redux/actions/users";
 import PostItem from "../../Posts/PostItem/PostItem";
-// import UserEditModal from "../UserEditModal/UserEditModal";
+import UserEditModal from "../UserEditModal/UserEditModal";
 
 interface Params {
   id: string,
@@ -146,31 +145,31 @@ const UserCard = ({ auth, user, posts, page, limit, total, loading, getCurrentUs
               </li>
             </ul>
           </div>
+          <h2 className="post__itle">Посты</h2>
+            <ul className="post__list">
+              {posts && posts.map((item: PostType, index: number) => (
+                <li className="post__item" key={index}>
+                  <PostItem item={item} key={index} onPostCardOpen={onPostCardOpen} />
+                </li>))}
+            </ul>
+          {posts && posts.length > 0 ? (<div className="post__pagination">
+              <Pagination
+                total={total}
+                pageSize={limit}
+                pageSizeOptions={pageSizeArray}
+                current={page + 1}
+                onChange={updatePageNumber}
+              />
+          </div>) : <p className="user-card__empty">Пусто :(</p>}
         </>
       )}
-      <ul className="post__list">
-        {posts && posts.map((item: PostType, index: number) => (
-          <li className="post__item" key={index}>
-            <PostItem item={item} key={index} onPostCardOpen={onPostCardOpen} />
-          </li>))}
-      </ul>
-      <div className="post__pagination">
-        <Pagination
-          total={total}
-          pageSize={limit}
-          pageSizeOptions={pageSizeArray}
-          current={page + 1}
-          onChange={updatePageNumber}
-        />
-    </div>
-
       {postCardVisible && <PostCard postId={postId} onPostCardClose={onPostCardClose} /> }
-      {/*{editModalVisible && (*/}
-      {/*  <UserEditModal*/}
-      {/*    user={user}*/}
-      {/*    onUserEditModalClose={onUserEditModalClose}*/}
-      {/*  />*/}
-      {/*)}*/}
+      {editModalVisible && user && (
+        <UserEditModal
+          user={user}
+          onUserEditModalClose={onUserEditModalClose}
+        />
+      )}
     </section>
   );
 };

@@ -12,10 +12,10 @@ interface Props {
 const PostComment = ({ item }: Props) => (
   <li className="comment__item">
     <div className="comment__head">
-      {item.owner && item.owner.id && item.owner.id && item.owner.lastName && item.owner.picture &&
+      {item.owner && item.owner.id && item.owner.firstName && item.owner.lastName && item.owner.picture &&
       <UserAvatar
         id={item.owner.id}
-        firstName={item.owner.id}
+        firstName={item.owner.firstName}
         lastName={item.owner.lastName}
         picture={item.owner.picture}
       />

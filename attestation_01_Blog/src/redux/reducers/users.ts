@@ -8,6 +8,7 @@ import {
   USERS_LIST_GET_SUCCESS,
   USERS_CREATE,
   USERS_UPDATE,
+  AVATAR_UPLOAD,
   SET_LIMIT,
   SET_PAGE,
   USERS_GET,
@@ -77,6 +78,7 @@ export default (state = initialState, action: UsersAction) => produce(
   (draft: UserListState) => {
     switch (action.type) {
       case USERS_LOAD: return showLoading(draft);
+      case AVATAR_UPLOAD: return { ...draft, loading: true };
       case USERS_LIST_GET_SUCCESS: return loadSuccess(draft, action.users, action.total, action.page, action.limit);
       case USERS_GET: return loadCurrentUserSuccess(draft, action.user);
       case POSTS_USER: return loadPostsUserSuccess(draft, action.posts, action.page, action.limit, action.total);

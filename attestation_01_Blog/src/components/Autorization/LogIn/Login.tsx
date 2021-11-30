@@ -16,12 +16,6 @@ import { createUser } from '../../../api/dumMyApi';
 import { UserType } from '../../../types/types';
 
 const { Option } = Select;
-const selectBefore = (
-  <Select defaultValue="+7" style={{ width: 70 }}>
-    <Option value="+7">+7</Option>
-    <Option value="8">8</Option>
-  </Select>
-);
 
 export const Login = () => {
   const [form] = Form.useForm();
@@ -148,10 +142,15 @@ export const Login = () => {
               <Form.Item
                 name="phone"
                 label="Номер телефона"
+                rules={[
+                  {
+                    pattern: new RegExp(/^8\d{10}$/i),
+                    message: 'Введите телефон в формате 8XXXXXXXXXX',
+                  },
+                ]}
               >
                 <InputNumber
-                  addonBefore={selectBefore}
-                  placeholder="XXX-XXX-XX-XX"
+                  placeholder="8XXX-XXX-XXXX"
                   controls={false}
                   style={{
                     width: '100%',

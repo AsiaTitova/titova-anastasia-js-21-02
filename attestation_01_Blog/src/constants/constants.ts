@@ -31,6 +31,7 @@ export const USERS_LOAD = 'USERS/LOAD';
 export const USERS_ERROR = 'USERS/ERROR';
 export const USERS_CREATE = 'USERS/CREATE';
 export const USERS_UPDATE = 'USERS/UPDATE';
+export const AVATAR_UPLOAD = 'USERS/AVATAR_UPLOAD';
 
 export const POSTS_USER = 'POSTS/LOAD_BY_USER';
 export const POSTS_LOADING = 'POSTS/LOAD';

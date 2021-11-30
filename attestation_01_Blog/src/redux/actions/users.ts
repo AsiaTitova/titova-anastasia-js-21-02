@@ -8,14 +8,12 @@ import {
   USERS_GET,
   USERS_CREATE,
   USERS_UPDATE,
-  SET_LIMIT,
-  SET_PAGE,
+  AVATAR_UPLOAD,
   POSTS_USER,
 } from '../../constants/constants';
-import {PostType, UserType} from '../../types/types';
+import { UserType } from '../../types/types';
 import { UsersAction } from '../../types/actions';
-import {createUser, getUserById, getUserList, getUsersPostById} from '../../api/dumMyApi';
-import {PostListState} from "../../types/state";
+import {createUser, getUserById, getUserList, getUsersPostById, updateUser} from '../../api/dumMyApi';
 
 const showLoadingAction = (): UsersAction => ({
   type: USERS_LOAD,
@@ -55,14 +53,10 @@ const loadCurrentUserSuccessAction = (user: UserType): UsersAction => ({
   error: '',
 });
 
-const setLimitAction = (limit: number): UsersAction => ({
-  type: SET_LIMIT,
-  limit: limit,
-});
-
-const setPageAction = (page: number): UsersAction => ({
-  type: SET_PAGE,
-  page: page,
+export const uploadAvatarAction = (id: string, avatar: Blob): UsersAction => ({
+  type: AVATAR_UPLOAD,
+  id,
+  avatar,
 });
 
 
@@ -97,6 +91,15 @@ export const createNewUser = (body: UserType): any => {
   return (dispatch: Dispatch) => {
     dispatch(showLoadingAction());
     createUser(body,(resp: any) => {
+      dispatch(loadCurrentUserSuccessAction(resp));
+    }, (error: any) => dispatch(loadErrorAction(error)))
+  };
+};
+
+export const updateCurrentUser = (body: UserType, id: string): any => {
+  return (dispatch: Dispatch) => {
+    dispatch(showLoadingAction());
+    updateUser(body, id,(resp: any) => {
       dispatch(loadCurrentUserSuccessAction(resp));
     }, (error: any) => dispatch(loadErrorAction(error)))
   };

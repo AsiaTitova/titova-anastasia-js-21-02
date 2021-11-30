@@ -16,7 +16,7 @@ const UserAvatar = ({
   lastName,
   picture,
 }: Props) => (
-  <Link to={`user/${id}`}>
+  <Link to={`/user/${id}`}>
     <div className="user-avatar">
       <Avatar src={picture} size="large" />
       <p className="user-avatar__name">
