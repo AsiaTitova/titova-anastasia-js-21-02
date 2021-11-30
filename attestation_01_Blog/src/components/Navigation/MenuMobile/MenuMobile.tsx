@@ -52,7 +52,7 @@ const MenuMobile = ({ auth, id }: Props) => {
   const [userMenuList] = useState([
     {
       name: 'Личный кабинет',
-      path: `/user/${id || authUserId.slice(1, -1)}`,
+      path: `/user/${id || (authUserId && authUserId.slice(1, -1))}`,
       icon: 'profile',
     }
   ] as Array<MenuItemType>);

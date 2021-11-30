@@ -151,7 +151,7 @@ const UserCard = ({ auth, user, posts, page, limit, total, loading, getCurrentUs
               </li>
             </ul>
           </div>
-          <h2 className="post__itle">Посты</h2>
+          <h2 className="post__title">Посты</h2>
             <ul className="post__list">
               {posts && posts.map((item: PostType, index: number) => (
                 <li className="post__item" key={index}>

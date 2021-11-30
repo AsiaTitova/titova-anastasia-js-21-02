@@ -75,6 +75,7 @@ p {
 .dark-theme .ant-menu,
 .dark-theme .registration__container,
 .dark-theme .post-card__modal,
+.dark-theme .edit-modal__modal,
 .dark-theme .post__card {
   background: #000;
 }
@@ -168,6 +169,9 @@ p {
 
 .dark-theme .login__enter:hover,
 .dark-theme .login__enter:focus,
+.dark-theme .ant-btn,
+.dark-theme .ant-btn:hover,
+.dark-theme .ant-btn:focus,
 .dark-theme .login__enter {
   border-color: #f68121;
   background: #f68121;
