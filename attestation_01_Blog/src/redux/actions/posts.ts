@@ -4,7 +4,7 @@ import { Dispatch } from 'redux';
 import { PostsAction } from "../../types/actions";
 import { PostType } from '../../types/types';
 import {
-  POSTS_LOADING, LOAD_POSTS_ERROR, LOAD_POSTS_SUCCESS, SET_LIMIT, SET_PAGE,
+  POSTS_LOADING, LOAD_POSTS_ERROR, LOAD_POSTS_SUCCESS, SET_LIMIT, SET_PAGE, GET_CURRENT_POSTS_SUCCESS,
 } from '../../constants/constants';
 
 import {getPostById, getPostList} from "../../api/dumMyApi";
@@ -15,6 +15,13 @@ const loadSuccessAction = (posts: Array<PostType>, total: number, page: number, 
   total: total,
   page: page,
   limit: limit,
+  loading: false,
+  error: '',
+});
+
+const loadCurrentPostSuccessAction = (currentPost: PostType): PostsAction => ({
+  type: GET_CURRENT_POSTS_SUCCESS,
+  post: currentPost,
   loading: false,
   error: '',
 });
@@ -58,3 +65,13 @@ export const load = (pageNum: number, pageSize: number): any => {
     }, (error: any) => dispatch(loadErrorAction(error)))
   };
 };
+
+export const loadCurrentPost = (id: string): any => {
+  return (dispatch: Dispatch) => {
+    dispatch(showLoadingAction());
+    getPostById(id, (resp: any) => {
+      dispatch(loadCurrentPostSuccessAction(resp))
+    }, (error: any) => dispatch(loadErrorAction(error)))
+  };
+};
+

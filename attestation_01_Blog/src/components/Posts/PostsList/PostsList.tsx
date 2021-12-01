@@ -1,17 +1,14 @@
-/* eslint-disable */
-
 import React, { useState, useEffect } from 'react';
 import './PostList.scss';
 import { useHistory } from 'react-router-dom';
 import { Pagination, Spin, Space } from 'antd';
-import { PostType } from '../../../types/types';
-import { PostListState } from '../../../types/state';
-import PostItem from '../PostItem/PostItem';
-import PostCard from '../PostCard/PostCard';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { State } from '../../../types/state';
+import { PostListState, State } from '../../../types/state';
+import { PostType } from '../../../types/types';
 import * as actions from '../../../redux/actions/posts';
+import PostItem from '../PostItem/PostItem';
+import PostCard from '../PostCard/PostCard';
 
 interface Props {
   posts?: PostListState;
@@ -22,10 +19,17 @@ interface Props {
   load: (pageNumber: number, limitNumber: number) => any;
 }
 
-const PostsList = ({ posts, page, limit, totalCount, loading, load }: Props) => {
+const PostsList = ({
+  posts,
+  page,
+  limit,
+  totalCount,
+  loading,
+  load,
+}: Props) => {
   const [pageSizeArray] = useState(['10', '20', '50'] as Array<string>);
   const [postCardVisible, setPostCardVisible] = useState(false as boolean);
-  const [postId, setPostId] = useState('' as string);
+  const [post, setPost] = useState({} as PostType);
   const history = useHistory();
 
   const updatePageNumber = (current: number, limitNumber: number): void => {
@@ -37,9 +41,9 @@ const PostsList = ({ posts, page, limit, totalCount, loading, load }: Props) => 
     history.push(`/posts?page=${page}&limit=${limit}`);
   }, []);
 
-  const onPostCardOpen = (id: string): void => {
-    if (id) {
-      setPostId(id);
+  const onPostCardOpen = (currentPost: PostType): void => {
+    if (currentPost) {
+      setPost(currentPost);
       setPostCardVisible(true);
     }
   };
@@ -76,7 +80,7 @@ const PostsList = ({ posts, page, limit, totalCount, loading, load }: Props) => 
           </div>
           {postCardVisible && (
             <PostCard
-              postId={postId}
+              post={post}
               onPostCardClose={onPostCardClose}
             />
           )}
@@ -84,6 +88,14 @@ const PostsList = ({ posts, page, limit, totalCount, loading, load }: Props) => 
       )}
     </div>
   );
+};
+
+PostsList.defaultProps = {
+  posts: {},
+  page: 0,
+  limit: 12,
+  totalCount: 0,
+  loading: false,
 };
 
 export default connect(

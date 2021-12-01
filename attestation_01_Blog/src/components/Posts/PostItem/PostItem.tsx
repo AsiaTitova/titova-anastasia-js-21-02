@@ -6,11 +6,11 @@ import UserAvatar from '../../Users/UserAvatar/UserAvatar';
 
 interface Props {
   item: PostType;
-  onPostCardOpen: (id: string) => void;
+  onPostCardOpen: (id: PostType) => void;
 }
 
 const UserItem = ({ item, onPostCardOpen }: Props) => (
-  <div className="post__card" onClick={() => item.id && onPostCardOpen(item.id)}>
+  <div className="post__card" onClick={() => item && onPostCardOpen(item)}>
     <div className="post__head">
       {item.owner && item.owner.id && item.owner.firstName && item.owner.lastName && item.owner.picture && (
         <UserAvatar

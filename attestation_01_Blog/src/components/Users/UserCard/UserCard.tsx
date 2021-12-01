@@ -37,7 +37,7 @@ const UserCard = ({ auth, user, posts, page, limit, total, loading, getCurrentUs
   useScrollToTop();
   const [editModalVisible, setEditModalVisible] = useState(false as boolean);
   const [postCardVisible, setPostCardVisible] = useState(false as boolean);
-  const [postId, setPostId] = useState('' as string);
+  const [post, setPost] = useState({} as PostType);
   const [pageSizeArray] = useState(['10', '20', '50'] as Array<string>);
   const params = useParams<Params>();
   const history = useHistory();
@@ -56,9 +56,9 @@ const UserCard = ({ auth, user, posts, page, limit, total, loading, getCurrentUs
     loadUserPosts(params.id, current, limitNumber);
   };
 
-  const onPostCardOpen = (id: string): void => {
-    if (id) {
-      setPostId(id);
+  const onPostCardOpen = (post: PostType): void => {
+    if (post && post.id) {
+      setPost(post);
       setPostCardVisible(true);
     }
   };
@@ -169,7 +169,7 @@ const UserCard = ({ auth, user, posts, page, limit, total, loading, getCurrentUs
           </div>) : <p className="user-card__empty">Пусто :(</p>}
         </>
       )}
-      {postCardVisible && <PostCard postId={postId} onPostCardClose={onPostCardClose} /> }
+      {postCardVisible && <PostCard post={post} onPostCardClose={onPostCardClose} /> }
       {editModalVisible && user && (
         <UserEditModal
           user={user}

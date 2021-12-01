@@ -152,9 +152,11 @@ export const getPostById = (
 
 export const getCommentsByPost = (
   id: string,
+  page: number,
+  limit: number,
   callback: (resp: CommentListResponse) => any,
   errorCallback?: (resp: any) => void,
   finalCallback?: () => void,
-) => {
+): any => {
   doGetRequest(`post/${id}/comment`, callback, errorCallback, finalCallback);
 };

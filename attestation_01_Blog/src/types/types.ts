@@ -33,7 +33,7 @@ export interface PostType {
   publishDate?: string;
   text?: string;
   tags?: Array<string>;
-  owner: UserType;
+  owner?: UserType;
   loading?: boolean;
 }
 

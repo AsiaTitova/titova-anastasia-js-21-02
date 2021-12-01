@@ -43,6 +43,7 @@ export interface CommentsAction extends Action {
   total?: number;
   page?: number;
   pageSize?: number;
+  loading?: boolean;
   error?: string;
 }
 

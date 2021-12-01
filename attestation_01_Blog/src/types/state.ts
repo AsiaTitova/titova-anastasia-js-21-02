@@ -47,6 +47,7 @@ export interface CommentListState {
 }
 
 export interface PostListState {
+  post?: PostType;
   posts?: Array<PostType>;
   page?: number;
   limit?: number;
