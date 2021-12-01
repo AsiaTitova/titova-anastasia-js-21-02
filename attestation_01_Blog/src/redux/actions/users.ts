@@ -28,70 +28,104 @@ const loadErrorAction = (error: string): UsersAction => ({
   error,
 });
 
-const loadUserListSuccessAction = (users: Array<UserType>, total: number, page: number, limit: number): UsersAction => ({
+const loadUserListSuccessAction = (users: Array<UserType>, total: number, page: number, limit: number, error?: string): UsersAction => ({
   type: USERS_LIST_GET_SUCCESS,
   users,
   total,
   page,
   limit,
   loading: false,
-  error: '',
+  error,
 });
 
-const loadPostsCurrentUserSuccessAction = (posts: any, page: number, limit: number, total: number): UsersAction => ({
+const loadPostsCurrentUserSuccessAction = (posts: any, page: number, limit: number, total: number, error?: string): UsersAction => ({
   type: POSTS_USER,
   posts,
   total,
   page,
   limit,
   loading: false,
-  error: '',
+  error,
 });
 
-const loadCurrentUserSuccessAction = (user: UserType): UsersAction => ({
+const loadCurrentUserSuccessAction = (user: UserType, error?: string): UsersAction => ({
   type: USERS_GET,
   user,
   loading: false,
-  error: '',
+  error,
 });
 
-export const uploadAvatarAction = (id: string, avatar: Blob): UsersAction => ({
+export const uploadAvatarAction = (id: string, avatar: Blob, error?: string): UsersAction => ({
   type: AVATAR_UPLOAD,
   id,
   avatar,
+  error,
 });
 
 export const loadUserList = (pageNum: number, pageSize: number): any => (dispatch: Dispatch) => {
   dispatch(showLoadingAction());
   getUserList(pageNum, pageSize, (resp: any) => {
+    if (resp.error) {
+      alert(resp.error);
+    }
     dispatch(loadUserListSuccessAction(resp.data, resp.total, resp.page, resp.limit));
-  }, (error: any) => dispatch(loadErrorAction(error)));
+  }, (error: any) => {
+    dispatch(loadErrorAction(error));
+    alert(error);
+  });
 };
 
 export const getCurrentUser = (id: string): any => (dispatch: Dispatch) => {
   dispatch(showLoadingAction());
   getUserById(id, (resp: UserType) => {
-    dispatch(loadCurrentUserSuccessAction(resp));
-  }, (error: any) => dispatch(loadErrorAction(error)));
+    if (resp.error) {
+      alert(resp.error);
+    } else {
+      dispatch(loadCurrentUserSuccessAction(resp));
+    }
+  }, (error: any) => {
+    dispatch(loadErrorAction(error));
+    alert(error);
+  });
 };
 
 export const loadUserPosts = (id: string, pageNum: number, pageSize: number): any => (dispatch: Dispatch) => {
   dispatch(showLoadingAction());
   getUsersPostById(id, pageNum, pageSize, (resp: any) => {
+    if (resp.error) {
+      alert(resp.error);
+    }
     dispatch(loadPostsCurrentUserSuccessAction(resp.data, resp.page, resp.limit, resp.total));
-  }, (error: any) => dispatch(loadErrorAction(error)));
+  }, (error: any) => {
+    dispatch(loadErrorAction(error));
+    alert(error);
+  });
 };
 
-export const createNewUser = (body: UserType): any => (dispatch: Dispatch) => {
+export const createNewUser = (body: UserType, callback: any): any => (dispatch: Dispatch) => {
   dispatch(showLoadingAction());
   createUser(body, (resp: any) => {
-    dispatch(loadCurrentUserSuccessAction(resp));
-  }, (error: any) => dispatch(loadErrorAction(error)));
+    if (resp.error) {
+      alert(resp.error);
+    } else {
+      dispatch(loadCurrentUserSuccessAction(resp));
+      dispatch(callback);
+    }
+  }, (error: any) => {
+    dispatch(loadErrorAction(error));
+    alert(error);
+  });
 };
 
 export const updateCurrentUser = (body: UserType, id: string): any => (dispatch: Dispatch) => {
   dispatch(showLoadingAction());
   updateUser(body, id, (resp: any) => {
+    if (resp.error) {
+      alert(resp.error);
+    }
     dispatch(loadCurrentUserSuccessAction(resp));
-  }, (error: any) => dispatch(loadErrorAction(error)));
+  }, (error: any) => {
+    dispatch(loadErrorAction(error));
+    alert(error);
+  });
 };

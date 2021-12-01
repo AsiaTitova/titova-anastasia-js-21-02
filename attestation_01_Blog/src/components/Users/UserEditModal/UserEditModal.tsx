@@ -24,7 +24,7 @@ const { Option } = Select;
 
 interface Props {
   user: UserType;
-  updateCurrentUser: (user: UserType, id: string) => {};
+  updateCurrentUser: (user: UserType, id: string) => any;
   onUserEditModalClose: () => void;
 }
 

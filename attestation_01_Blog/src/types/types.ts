@@ -22,6 +22,7 @@ export interface UserType {
   dateOfBirth?: string;
   registerDate?: string;
   phone?: string;
+  error?: string;
 }
 
 export interface UserListResponse extends ListResponseType<UserType> {};
