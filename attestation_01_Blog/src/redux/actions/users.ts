@@ -104,14 +104,13 @@ export const loadUserPosts = (id: string, pageNum: number, pageSize: number): an
 
 export const createNewUser = (body: UserType, callback: any): any => (dispatch: Dispatch) => {
   dispatch(showLoadingAction());
+  console.log(123);
   createUser(body, (resp: any) => {
-    if (resp.error) {
-      alert(resp.error);
-    } else {
-      dispatch(loadCurrentUserSuccessAction(resp));
-      dispatch(callback);
-    }
-  }, (error: any) => {
+    console.log(123);
+    dispatch(loadCurrentUserSuccessAction(resp));
+    callback(resp);
+  },
+  (error: any) => {
     dispatch(loadErrorAction(error));
     alert(error);
   });

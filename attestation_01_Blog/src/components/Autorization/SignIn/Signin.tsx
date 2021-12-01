@@ -48,7 +48,11 @@ const Signin = ({ login }: Props) => {
             rules={[
               {
                 required: true,
-                message: 'Необходимо обязательно указать свой ID',
+                message: 'Укажите свой ID',
+              },
+              {
+                pattern: new RegExp(/^[a-z0-9]+$/i),
+                message: 'ID ожет содержать только строчные анлийских буквы и цифры',
               },
             ]}
           >
