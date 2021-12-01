@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -18,7 +16,13 @@ interface Props {
   picture?: string;
 }
 
-const AuthorizationPanel = ({ auth, id, firstName, lastName, picture, }: Props) => {
+const AuthorizationPanel = ({
+  auth,
+  id,
+  firstName,
+  lastName,
+  picture,
+}: Props) => {
   const [menuList] = useState([
     {
       name: 'Вход',
@@ -34,7 +38,7 @@ const AuthorizationPanel = ({ auth, id, firstName, lastName, picture, }: Props) 
     window.localStorage.removeItem('user');
     window.localStorage.removeItem('user_id');
     window.localStorage.removeItem('auth');
-    location.reload();
+    window.location.reload();
   };
 
   return (
@@ -54,6 +58,14 @@ const AuthorizationPanel = ({ auth, id, firstName, lastName, picture, }: Props) 
       ))}
     </ul>
   );
+};
+
+AuthorizationPanel.defaultProps = {
+  auth: false,
+  id: '',
+  firstName: '',
+  lastName: '',
+  picture: '',
 };
 
 export default connect(

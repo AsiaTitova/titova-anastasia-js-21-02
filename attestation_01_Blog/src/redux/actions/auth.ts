@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import { Dispatch } from 'redux';
 import {
   AUTH_SIGN_IN,
@@ -8,13 +6,12 @@ import {
 } from '../../constants/constants';
 import { UserType } from '../../types/types';
 import { AuthAction } from '../../types/actions';
-
-import { getUserById } from "../../api/dumMyApi";
+import { getUserById } from '../../api/dumMyApi';
 
 const loadSuccessAction = (user: UserType): AuthAction => ({
-  type:  AUTH_SUCCESS,
+  type: AUTH_SUCCESS,
   auth: true,
-  user: user,
+  user,
   id: user.id,
   firstName: user.firstName,
   lastName: user.lastName,
@@ -26,7 +23,7 @@ const loadSuccessAction = (user: UserType): AuthAction => ({
 const loadErrorAction = (error: string): AuthAction => ({
   type: AUTH_ERROR,
   loading: false,
-  error: error,
+  error,
 });
 
 const showLoadingAction = () => ({
@@ -34,14 +31,12 @@ const showLoadingAction = () => ({
   loading: true,
 });
 
-export const login = (id: string): any => {
-  return (dispatch: Dispatch) => {
-    dispatch(showLoadingAction());
-    getUserById(id, (resp: any) => {
-      dispatch(loadSuccessAction(resp));
-      window.localStorage.setItem('user', JSON.stringify(resp));
-      window.localStorage.setItem('user_id', JSON.stringify(resp.id));
-      window.localStorage.setItem('auth', JSON.stringify(true));
-    }, (error: any) => dispatch(loadErrorAction(error)))
-  };
+export const login = (id: string): any => (dispatch: Dispatch) => {
+  dispatch(showLoadingAction());
+  getUserById(id, (resp: any) => {
+    dispatch(loadSuccessAction(resp));
+    window.localStorage.setItem('user', JSON.stringify(resp));
+    window.localStorage.setItem('user_id', JSON.stringify(resp.id));
+    window.localStorage.setItem('auth', JSON.stringify(true));
+  }, (error: any) => dispatch(loadErrorAction(error)));
 };

@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -11,12 +9,12 @@ import {
   KeyOutlined,
   LogoutOutlined,
 } from '@ant-design/icons';
-import './MenuMobile.scss';
-import { MenuItemType } from '../../../types/types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { MenuItemType } from '../../../types/types';
 import * as actions from '../../../redux/actions/posts';
 import { State } from '../../../types/state';
+import './MenuMobile.scss';
 
 interface Props {
   auth?: boolean;
@@ -54,14 +52,14 @@ const MenuMobile = ({ auth, id }: Props) => {
       name: 'Личный кабинет',
       path: `/user/${id || (authUserId && authUserId.slice(1, -1))}`,
       icon: 'profile',
-    }
+    },
   ] as Array<MenuItemType>);
 
   const logOut = () => {
     window.localStorage.removeItem('user');
     window.localStorage.removeItem('user_id');
     window.localStorage.removeItem('auth');
-    location.reload();
+    window.location.reload();
   };
 
   return (
@@ -70,51 +68,58 @@ const MenuMobile = ({ auth, id }: Props) => {
         <button className="menu__button" type="button" onClick={() => setVisibleMenu(!visibleMenu)}>
           <AppstoreOutlined />
         </button>
-        {visibleMenu && (<ul className="menu__list">
-          { menuList && menuList.map((item, index) => (
-            <li className="menu__item" key={index}>
-              <Link to={item.path}>
-                <span className="menu__icon">
-                  {item.icon && item.icon === 'users' ? <UserOutlined /> : <PictureOutlined /> }
-                </span>
-                {item.name}
-              </Link>
-            </li>
-          ))}
-          {!auth && authMenuList && authMenuList.map((item, index) => (
-            <li className="menu__item" key={index}>
-              <Link to={item.path}>
-                <span className="menu__icon">
-                  {item.icon && item.icon === 'signin' ? <LoginOutlined /> : <UsergroupAddOutlined /> }
-                </span>
-                {item.name}
-              </Link>
-            </li>
-          ))}
-          {auth && userMenuList && userMenuList.map((item, index) => (
-            <>
+        {visibleMenu && (
+          <ul className="menu__list">
+            { menuList && menuList.map((item, index) => (
               <li className="menu__item" key={index}>
                 <Link to={item.path}>
                   <span className="menu__icon">
-                    {item.icon && item.icon === 'profile' ? <KeyOutlined /> : <LogoutOutlined /> }
+                    {item.icon && item.icon === 'users' ? <UserOutlined /> : <PictureOutlined /> }
                   </span>
                   {item.name}
                 </Link>
               </li>
-              <li className="menu__item">
-                <button className="menu__logout" onClick={logOut} type="button">
+            ))}
+            {!auth && authMenuList && authMenuList.map((item, index) => (
+              <li className="menu__item" key={index}>
+                <Link to={item.path}>
                   <span className="menu__icon">
-                    <LogoutOutlined />
+                    {item.icon && item.icon === 'signin' ? <LoginOutlined /> : <UsergroupAddOutlined /> }
                   </span>
-                  Выход
-                </button>
+                  {item.name}
+                </Link>
               </li>
-            </>
-          ))}
-        </ul>)}
+            ))}
+            {auth && userMenuList && userMenuList.map((item, index) => (
+              <>
+                <li className="menu__item" key={index}>
+                  <Link to={item.path}>
+                    <span className="menu__icon">
+                      {item.icon && item.icon === 'profile' ? <KeyOutlined /> : <LogoutOutlined /> }
+                    </span>
+                    {item.name}
+                  </Link>
+                </li>
+                <li className="menu__item">
+                  <button className="menu__logout" onClick={logOut} type="button">
+                    <span className="menu__icon">
+                      <LogoutOutlined />
+                    </span>
+                    Выход
+                  </button>
+                </li>
+              </>
+            ))}
+          </ul>
+        )}
       </div>
     </header>
   );
+};
+
+MenuMobile.defaultProps = {
+  auth: false,
+  id: '',
 };
 
 export default connect(

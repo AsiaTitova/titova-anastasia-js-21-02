@@ -1,13 +1,13 @@
 /* eslint-disable */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './PostCard.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {CommentListState, State} from '../../../types/state';
-import * as actions from "../../../redux/actions/comments";
-import { loadCurrentPost } from "../../../redux/actions/posts";
-import { Spin, Space } from 'antd';
+import { Spin, Space, Pagination } from 'antd';
 import { CloseOutlined, TagsOutlined } from '@ant-design/icons';
+import { CommentListState, State } from '../../../types/state';
+import * as actions from '../../../redux/actions/comments';
+import { loadCurrentPost } from '../../../redux/actions/posts';
 import {
   PostType,
   CommentType,
@@ -24,16 +24,33 @@ interface Props {
   loading?: boolean;
   load: (id: string, pageNumber: number, limitNumber: number) => any;
   updatePageNumber: (id: string, pageNumber: number, limitNumber: number) => any;
-  onPostCardClose?: () => void;
+  onPostCardClose: () => void;
 }
 
-const PostCard = ({ post, comments, page, pageSize, total, loading, load, updatePageNumber, onPostCardClose }: Props) => {
+const PostCard = ({
+  post,
+  comments,
+  page,
+  pageSize,
+  total,
+  loading,
+  load,
+  updatePageNumber,
+  onPostCardClose,
+}: Props) => {
+  const [pageSizeArray] = useState(['5', '10', '20'] as Array<string>);
   useEffect(() => {
     if (post && post.id) {
       loadCurrentPost(post.id);
       load(post.id, page, pageSize);
     }
   }, []);
+
+  const updatePage = (current: number, limitNumber: number): void => {
+    if (post && post.id) {
+      updatePageNumber(post.id, current, limitNumber);
+    }
+  };
 
   return (
     <div className="post-card">
@@ -51,9 +68,7 @@ const PostCard = ({ post, comments, page, pageSize, total, loading, load, update
                   id={post.owner.id}
                   firstName={post.owner.firstName}
                   lastName={post.owner.lastName}
-                  picture={post.owner.picture}
-                />
-              }
+                  picture={post.owner.picture} /> }
               <p className="post-card__publish">
                 <span>{post && post.publishDate && post.publishDate.split('T')[0].split('-').reverse().join('.')}</span>
                 <span> в </span>
@@ -87,6 +102,15 @@ const PostCard = ({ post, comments, page, pageSize, total, loading, load, update
                   </ul>
                 ) : (<p className="comments__empty">Нет комментариев :(</p>)}
               </div>
+              <div className="pagination">
+                <Pagination
+                  total={total}
+                  pageSize={pageSize}
+                  pageSizeOptions={pageSizeArray}
+                  current={page + 1}
+                  onChange={updatePage}
+                />
+              </div>
             </div>
           </>
         )}
@@ -104,6 +128,5 @@ export default connect(
     loading: state.comments.loading,
     error: state.comments.error,
   }),
-  (dispatch: any) => bindActionCreators(actions, dispatch)
+  (dispatch: any) => bindActionCreators(actions, dispatch),
 )(PostCard);
-

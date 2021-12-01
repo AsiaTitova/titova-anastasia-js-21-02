@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
@@ -14,7 +13,7 @@ const middleware = (store: any) => (next: any) => (action: any) => {
 
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(thunk, middleware))
+  composeWithDevTools(applyMiddleware(thunk, middleware)),
 );
 
 export default store;

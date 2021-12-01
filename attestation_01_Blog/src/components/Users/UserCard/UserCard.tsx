@@ -1,21 +1,24 @@
 /* eslint-disable */
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {Button, Spin, Space, Pagination} from 'antd';
+import {
+  Button,
+  Spin,
+  Space,
+  Pagination,
+} from 'antd';
 import { EditOutlined, DoubleLeftOutlined } from '@ant-design/icons';
 import * as actions from '../../../redux/actions/users';
 import useScrollToTop from '../../../utils/useScrollToTop';
-import {AuthState, PostListState, State} from '../../../types/state';
+import { AuthState, State } from '../../../types/state';
 import { UserType, PostType } from '../../../types/types';
 import './UserCard.scss';
-import PostCard from "../../Posts/PostCard/PostCard";
-import PostItem from "../../Posts/PostItem/PostItem";
-import UserEditModal from "../UserEditModal/UserEditModal";
-import {TRUE_STRING} from "../../../constants/constants";
+import PostCard from '../../Posts/PostCard/PostCard';
+import PostItem from '../../Posts/PostItem/PostItem';
+import UserEditModal from '../UserEditModal/UserEditModal';
 
 interface Params {
   id: string,
@@ -33,7 +36,17 @@ interface Props {
   loadUserPosts: (id: string, page: any, limit: any) => any;
 }
 
-const UserCard = ({ auth, user, posts, page, limit, total, loading, getCurrentUser, loadUserPosts }: Props) => {
+const UserCard = ({
+  auth,
+  user,
+  posts,
+  page,
+  limit,
+  total,
+  loading,
+  getCurrentUser,
+  loadUserPosts,
+}: Props) => {
   useScrollToTop();
   const [editModalVisible, setEditModalVisible] = useState(false as boolean);
   const [postCardVisible, setPostCardVisible] = useState(false as boolean);
@@ -56,9 +69,9 @@ const UserCard = ({ auth, user, posts, page, limit, total, loading, getCurrentUs
     loadUserPosts(params.id, current, limitNumber);
   };
 
-  const onPostCardOpen = (post: PostType): void => {
-    if (post && post.id) {
-      setPost(post);
+  const onPostCardOpen = (currentPost: PostType): void => {
+    if (currentPost && currentPost.id) {
+      setPost(currentPost);
       setPostCardVisible(true);
     }
   };
@@ -93,11 +106,11 @@ const UserCard = ({ auth, user, posts, page, limit, total, loading, getCurrentUs
 
   const onUserEditModalOpen = () => {
     setEditModalVisible(true);
-  }
+  };
 
   const onUserEditModalClose = () => {
     setEditModalVisible(false);
-  }
+  };
 
   return (
     <section className="user-card">
@@ -152,20 +165,20 @@ const UserCard = ({ auth, user, posts, page, limit, total, loading, getCurrentUs
             </ul>
           </div>
           <h2 className="post__title">Посты</h2>
-            <ul className="post__list">
-              {posts && posts.map((item: PostType, index: number) => (
-                <li className="post__item" key={index}>
-                  <PostItem item={item} key={index} onPostCardOpen={onPostCardOpen} />
-                </li>))}
-            </ul>
+          <ul className="post__list">
+            {posts && posts.map((item: PostType, index: number) => (
+              <li className="post__item" key={index}>
+                <PostItem item={item} key={index} onPostCardOpen={onPostCardOpen} />
+              </li>))}
+          </ul>
           {posts && posts.length > 0 ? (<div className="post__pagination">
-              <Pagination
-                total={total}
-                pageSize={limit}
-                pageSizeOptions={pageSizeArray}
-                current={page + 1}
-                onChange={updatePageNumber}
-              />
+            <Pagination
+              total={total}
+              pageSize={limit}
+              pageSizeOptions={pageSizeArray}
+              current={page + 1}
+              onChange={updatePageNumber}
+            />
           </div>) : <p className="user-card__empty">Пусто :(</p>}
         </>
       )}
@@ -178,6 +191,16 @@ const UserCard = ({ auth, user, posts, page, limit, total, loading, getCurrentUs
       )}
     </section>
   );
+};
+
+UserCard.defaultProps = {
+  auth: {},
+  user: {},
+  posts: [],
+  page: 0,
+  limit: 10,
+  total: 0,
+  loading: false,
 };
 
 export default connect(

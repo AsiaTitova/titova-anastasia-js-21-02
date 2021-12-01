@@ -1,19 +1,24 @@
-/* eslint-disable */
-
 import './UserEditModal.scss';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import moment, { Moment } from 'moment';
-import {Alert, Button, DatePicker, Divider, Form, Input, InputNumber, Select, Spin} from 'antd';
+import { Redirect } from 'react-router-dom';
+import moment from 'moment';
+import {
+  Button,
+  DatePicker,
+  Divider,
+  Form,
+  Input,
+  InputNumber,
+  Select,
+} from 'antd';
+import { MailOutlined, UserOutlined } from '@ant-design/icons';
+import locale from 'antd/es/date-picker/locale/ru_RU';
 import { UserType } from '../../../types/types';
 import { State } from '../../../types/state';
 import * as actions from '../../../redux/actions/users';
-import {createUser} from "../../../api/dumMyApi";
-import {Link, Redirect} from "react-router-dom";
-import {MailOutlined, UserOutlined} from "@ant-design/icons";
-import locale from "antd/es/date-picker/locale/ru_RU";
-import {METHOD_POST} from "../../../constants/constants";
+import { METHOD_POST } from '../../../constants/constants';
 
 const { Option } = Select;
 
@@ -26,8 +31,8 @@ interface Props {
 const UserEdit = ({ user, onUserEditModalClose, updateCurrentUser }: Props) => {
   const [form] = Form.useForm();
   const file = React.createRef<HTMLInputElement>();
-  const [redirect, setRedirect] = useState(false);
-  const [userId, setUserId] = useState('' as string);
+  const [redirect] = useState(false);
+  const [userId] = useState('' as string);
 
   const deleteAvatar = (): void => {
     user?.id && updateCurrentUser({ id: user.id, picture: '' }, user.id);
@@ -67,16 +72,16 @@ const UserEdit = ({ user, onUserEditModalClose, updateCurrentUser }: Props) => {
       dateOfBirth = moment(new Date(isDateOfBirth), 'MM/DD/YYYY').toString();
     }
 
-    user?.id && updateCurrentUser( {
+    user?.id && updateCurrentUser({
       id: user.id,
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      phone: phone,
-      gender: gender,
-      dateOfBirth: dateOfBirth,
-      picture: picture,
-      title: title
+      firstName,
+      lastName,
+      email,
+      phone,
+      gender,
+      dateOfBirth,
+      picture,
+      title,
     }, user.id);
     onUserEditModalClose();
   };
@@ -89,7 +94,7 @@ const UserEdit = ({ user, onUserEditModalClose, updateCurrentUser }: Props) => {
           <div className="edit-modal__form">
             <h1 className="edit-modal__title">Редактировать профиль</h1>
             <div className="edit-modal__picture-wrap">
-              <img className="edit-modal__picture" src={ user && user.picture } alt="avatar" />
+              <img className="edit-modal__picture" src={user && user.picture} alt="avatar" />
               <input
                 ref={file}
                 type="file"
@@ -142,19 +147,19 @@ const UserEdit = ({ user, onUserEditModalClose, updateCurrentUser }: Props) => {
                 label="Имя"
                 name="firstName"
               >
-                <Input placeholder="Введите имя..." defaultValue={ user && user.firstName } prefix={<UserOutlined />} />
+                <Input placeholder="Введите имя..." defaultValue={user && user.firstName} prefix={<UserOutlined />} />
               </Form.Item>
               <Form.Item
                 label="Фамилия"
                 name="lastName"
               >
-                <Input placeholder="Введите фамилию..." defaultValue={ user && user.lastName } prefix={<UserOutlined />} />
+                <Input placeholder="Введите фамилию..." defaultValue={user && user.lastName} prefix={<UserOutlined />} />
               </Form.Item>
               <Form.Item
                 label="Обращение"
                 name="title"
               >
-                <Select placeholder="Как к вам обращаться?" defaultValue={ user && user.title } allowClear>
+                <Select placeholder="Как к вам обращаться?" defaultValue={user && user.title} allowClear>
                   <Option value="mr">mr</Option>
                   <Option value="ms">ms</Option>
                   <Option value="mrs">mrs</Option>
@@ -166,13 +171,13 @@ const UserEdit = ({ user, onUserEditModalClose, updateCurrentUser }: Props) => {
                   name="gender"
                   label="Пол"
                 >
-                  <Select placeholder="Ваш пол" allowClear defaultValue={ user && user.gender }>
+                  <Select placeholder="Ваш пол" allowClear defaultValue={user && user.gender}>
                     <Option value="male">Мужской</Option>
                     <Option value="female">Женский</Option>
                   </Select>
                 </Form.Item>
                 <Form.Item name="dateOfBirth" label="Дата рождения">
-                  {user && user.dateOfBirth && <DatePicker defaultValue={ moment(new Date(user.dateOfBirth), 'YYYY-MM-DD') } locale={locale} /> }
+                  {user && user.dateOfBirth && <DatePicker defaultValue={moment(new Date(user.dateOfBirth), 'YYYY-MM-DD')} locale={locale} /> }
                 </Form.Item>
               </div>
               <Form.Item
@@ -192,7 +197,7 @@ const UserEdit = ({ user, onUserEditModalClose, updateCurrentUser }: Props) => {
                     },
                   ]}
                 >
-                  <Input placeholder="Введите Email..." prefix={<MailOutlined />} defaultValue={ user && user.email } />
+                  <Input placeholder="Введите Email..." prefix={<MailOutlined />} defaultValue={user && user.email} />
                 </Form.Item>
                 <Form.Item
                   name="phone"
@@ -211,7 +216,7 @@ const UserEdit = ({ user, onUserEditModalClose, updateCurrentUser }: Props) => {
                       width: '100%',
                     }}
                     onChange={onChange}
-                    defaultValue={ user && user.phone }
+                    defaultValue={user && user.phone}
                   />
                 </Form.Item>
               </div>

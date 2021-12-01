@@ -1,5 +1,4 @@
 import { PostType, UserType, CommentType } from './types';
-import {PostListState} from "./state";
 
 export interface Action {
   type: string;
