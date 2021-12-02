@@ -30,7 +30,9 @@ const UserItem = ({ item, onPostCardOpen }: Props) => (
       </p>
     </div>
     <div className="post__content">
-      <img className="post__image" src={item.image && item.image} alt=" " />
+      <div className="post__img-wrap">
+        <img className="post__image" src={item.image && item.image} alt=" " />
+      </div>
       <p className="post__text">{item.text && item.text}</p>
     </div>
   </div>

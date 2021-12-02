@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {
   APP_ID_FIELD,
   APP_ID_VALUE,
@@ -56,10 +57,14 @@ const doPostRequest = <T>(
     }),
     body: bodyInfo,
   }).then((resp) => resp.json())
-    .then(callback)
+    .then((resp): any => resp.error ? alert(showErrors(resp)) : callback)
     .catch(errorCallback)
     .finally(finalCallback);
 };
+
+const showErrors = (error: any) => {
+  return Object.values(error.data).join('-');
+}
 
 const doPutRequest = <T>(
   path: string,
@@ -118,6 +123,7 @@ export const createUser = (
   errorCallback?: (resp: ResponseError) => void,
   finalCallback?: () => void,
 ): any => {
+  console.log(body);
   doPostRequest(USER_CREATE_URL, body, callback, errorCallback, finalCallback);
 };
 

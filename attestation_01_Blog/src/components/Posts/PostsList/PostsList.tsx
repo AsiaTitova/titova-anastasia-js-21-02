@@ -27,7 +27,7 @@ const PostsList = ({
   loading,
   load,
 }: Props) => {
-  const [pageSizeArray] = useState(['10', '20', '50'] as Array<string>);
+  const [pageSizeArray] = useState(['12', '27', '56'] as Array<string>);
   const [postCardVisible, setPostCardVisible] = useState(false as boolean);
   const [post, setPost] = useState({} as PostType);
   const history = useHistory();

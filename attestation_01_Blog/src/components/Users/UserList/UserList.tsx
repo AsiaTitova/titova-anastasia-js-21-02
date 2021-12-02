@@ -26,7 +26,7 @@ const UserList = ({
   loading,
   loadUserList,
 }: Props) => {
-  const [pageSizeArray] = useState(['12', '21', '51'] as Array<string>);
+  const [pageSizeArray] = useState(['12', '27', '48'] as Array<string>);
   const history = useHistory();
 
   const updatePageNumber = (current: number, limitNumber: number): void => {

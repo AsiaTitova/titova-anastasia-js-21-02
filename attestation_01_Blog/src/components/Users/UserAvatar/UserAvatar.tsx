@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import { Avatar } from 'antd';
 
 interface Props {
-  id: string;
-  firstName: string;
-  lastName: string;
-  picture: string;
+  id?: string;
+  firstName?: string;
+  lastName?: string;
+  picture?: string;
 }
 
 const UserAvatar = ({
@@ -19,6 +19,7 @@ const UserAvatar = ({
   <Link to={`/user/${id}`}>
     <div className="user-avatar">
       <Avatar src={picture} size="large" />
+      <div className="user-avatar__tooltip">{id}</div>
       <p className="user-avatar__name">
         <span>{firstName}</span>
         <span>{lastName}</span>
@@ -26,5 +27,12 @@ const UserAvatar = ({
     </div>
   </Link>
 );
+
+UserAvatar.defaultProps = {
+  id: '',
+  firstName: '',
+  lastName: '',
+  picture: '',
+};
 
 export default UserAvatar;

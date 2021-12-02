@@ -17,7 +17,7 @@ const initialState: PostListState = {
   posts: [],
   post: {},
   page: 0,
-  limit: 10,
+  limit: 12,
   total: 0,
   loading: false,
   error: '',

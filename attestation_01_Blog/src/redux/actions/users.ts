@@ -78,14 +78,9 @@ export const loadUserList = (pageNum: number, pageSize: number): any => (dispatc
 export const getCurrentUser = (id: string): any => (dispatch: Dispatch) => {
   dispatch(showLoadingAction());
   getUserById(id, (resp: UserType) => {
-    if (resp.error) {
-      alert(resp.error);
-    } else {
-      dispatch(loadCurrentUserSuccessAction(resp));
-    }
+    dispatch(loadCurrentUserSuccessAction(resp));
   }, (error: any) => {
     dispatch(loadErrorAction(error));
-    alert(error);
   });
 };
 
@@ -104,15 +99,12 @@ export const loadUserPosts = (id: string, pageNum: number, pageSize: number): an
 
 export const createNewUser = (body: UserType, callback: any): any => (dispatch: Dispatch) => {
   dispatch(showLoadingAction());
-  console.log(123);
   createUser(body, (resp: any) => {
-    console.log(123);
     dispatch(loadCurrentUserSuccessAction(resp));
     callback(resp);
   },
   (error: any) => {
     dispatch(loadErrorAction(error));
-    alert(error);
   });
 };
 

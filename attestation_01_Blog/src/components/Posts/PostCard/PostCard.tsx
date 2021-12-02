@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './PostCard.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -39,6 +39,7 @@ const PostCard = ({
   onPostCardClose,
 }: Props) => {
   const [pageSizeArray] = useState(['5', '10', '20'] as Array<string>);
+
   useEffect(() => {
     if (post && post.id) {
       loadCurrentPost(post.id);
