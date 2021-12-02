@@ -71,7 +71,6 @@ export const loadUserList = (pageNum: number, pageSize: number): any => (dispatc
     dispatch(loadUserListSuccessAction(resp.data, resp.total, resp.page, resp.limit));
   }, (error: any) => {
     dispatch(loadErrorAction(error));
-    alert(error);
   });
 };
 
@@ -93,7 +92,6 @@ export const loadUserPosts = (id: string, pageNum: number, pageSize: number): an
     dispatch(loadPostsCurrentUserSuccessAction(resp.data, resp.page, resp.limit, resp.total));
   }, (error: any) => {
     dispatch(loadErrorAction(error));
-    alert(error);
   });
 };
 
@@ -117,6 +115,5 @@ export const updateCurrentUser = (body: UserType, id: string): any => (dispatch:
     dispatch(loadCurrentUserSuccessAction(resp));
   }, (error: any) => {
     dispatch(loadErrorAction(error));
-    alert(error);
   });
 };
