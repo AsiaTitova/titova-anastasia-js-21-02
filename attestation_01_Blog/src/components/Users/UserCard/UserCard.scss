@@ -43,6 +43,16 @@
     margin: 0 0 24px;
   }
 
+
+  &__img-wrap {
+    display: block;
+    min-width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #cccccc;
+    margin-right: 16px;
+  }
+
   &__name-wrap {
     width: 100%;
     height: fit-content;

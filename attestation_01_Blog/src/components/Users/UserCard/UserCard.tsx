@@ -128,7 +128,9 @@ const UserCard = ({
           <Button type="link" className="user-card__back" icon={<DoubleLeftOutlined />} onClick={goUserList}>Список пользователей</Button>
           <div className="user-card__info">
             <div className="user-card__wrap">
-              { (user && user.picture) ? <img className="user-card__img" width="100" height="100" alt="аватарка" src={user.picture} /> : <img className="user-card__img" width="100" height="100" alt="аватарка" src="./img/avatar.jpg" />}
+              <div className="user-card__img-wrap">
+                { (user && user.picture) ? <img className="user-card__img" width="100" height="100" alt="аватарка" src={user.picture} /> : ''}
+              </div>
               <div className="user-card__name-wrap">
                 <h2 className="user-card__name">
                   {`${setTitle(user && user.gender, user && user.title)} ${user && user.firstName} ${user && user.lastName}`}
