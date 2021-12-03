@@ -1,6 +1,6 @@
 import React from 'react';
 import './UserAvatar.scss';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Avatar } from 'antd';
 
 interface Props {
@@ -8,6 +8,7 @@ interface Props {
   firstName?: string;
   lastName?: string;
   picture?: string;
+  activeLink?: boolean;
 }
 
 const UserAvatar = ({
@@ -15,24 +16,35 @@ const UserAvatar = ({
   firstName,
   lastName,
   picture,
-}: Props) => (
-  <Link to={`/user/${id}`}>
-    <div className="user-avatar">
-      <Avatar src={picture} size="large" />
-      <div className="user-avatar__tooltip">{id}</div>
-      <p className="user-avatar__name">
-        <span>{firstName}</span>
-        <span>{lastName}</span>
-      </p>
+  activeLink,
+}: Props) => {
+  const history = useHistory();
+
+  const goToUserProfile = (userId: string): void => {
+    history.push(`/user/${userId}`);
+    window.location.reload();
+  };
+
+  return (
+    <div onClick={() => id && activeLink && goToUserProfile(id)}>
+      <div className="user-avatar">
+        <Avatar src={picture} size="large" />
+        <div className="user-avatar__tooltip">{id}</div>
+        <p className="user-avatar__name">
+          <span>{firstName}</span>
+          <span>{lastName}</span>
+        </p>
+      </div>
     </div>
-  </Link>
-);
+  );
+};
 
 UserAvatar.defaultProps = {
   id: '',
   firstName: '',
   lastName: '',
   picture: '',
+  activeLink: false,
 };
 
 export default UserAvatar;

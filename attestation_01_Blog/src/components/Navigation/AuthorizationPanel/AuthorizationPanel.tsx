@@ -45,7 +45,7 @@ const AuthorizationPanel = ({
     <ul className="navigation__auth">
       {auth && id && firstName && lastName && picture && (
         <>
-          <UserAvatar id={id} firstName={firstName} lastName={lastName} picture={picture} />
+          <UserAvatar id={id} firstName={firstName} lastName={lastName} picture={picture} activeLink />
           <button className="navigation__logout" onClick={logOut} type="button">Выход</button>
         </>
       )}
