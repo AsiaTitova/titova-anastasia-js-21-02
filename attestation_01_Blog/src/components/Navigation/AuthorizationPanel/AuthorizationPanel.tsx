@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../redux/actions/posts';
 import { State } from '../../../types/state';
-import { MenuItemType } from '../../../types/types';
+import { MenuItemType, UserType } from '../../../types/types';
 import UserAvatar from '../../Users/UserAvatar/UserAvatar';
 import './AuthorizationPanel.scss';
 
 interface Props {
   auth?: boolean;
+  user?: UserType;
   id?: string;
   firstName?: string;
   lastName?: string;
@@ -18,6 +19,7 @@ interface Props {
 
 const AuthorizationPanel = ({
   auth,
+  user,
   id,
   firstName,
   lastName,
@@ -43,9 +45,9 @@ const AuthorizationPanel = ({
 
   return (
     <ul className="navigation__auth">
-      {auth && id && firstName && lastName && picture && (
+      {auth && user && (
         <>
-          <UserAvatar id={id} firstName={firstName} lastName={lastName} picture={picture} activeLink />
+          <UserAvatar id={id || user.id} firstName={firstName || user.firstName} lastName={lastName || user.lastName} picture={picture || user.picture} activeLink />
           <button className="navigation__logout" onClick={logOut} type="button">Выход</button>
         </>
       )}
@@ -63,6 +65,7 @@ const AuthorizationPanel = ({
 AuthorizationPanel.defaultProps = {
   auth: false,
   id: '',
+  user: {},
   firstName: '',
   lastName: '',
   picture: '',
@@ -71,6 +74,7 @@ AuthorizationPanel.defaultProps = {
 export default connect(
   (state: State) => ({
     auth: state.auth.auth,
+    user: state.auth.user,
     id: state.auth.id,
     firstName: state.auth.firstName,
     lastName: state.auth.lastName,
