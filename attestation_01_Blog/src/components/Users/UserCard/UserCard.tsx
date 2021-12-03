@@ -112,6 +112,10 @@ const UserCard = ({
     setEditModalVisible(false);
   };
 
+  const goUserList = () => {
+    history.push('/users');
+  };
+
   return (
     <section className="user-card">
       {loading && (
@@ -121,7 +125,7 @@ const UserCard = ({
       )}
       {!loading && (
         <>
-          <Button type="link" className="user-card__back" icon={<DoubleLeftOutlined />} onClick={history.goBack}>Назад</Button>
+          <Button type="link" className="user-card__back" icon={<DoubleLeftOutlined />} onClick={goUserList}>Список пользователей</Button>
           <div className="user-card__info">
             <div className="user-card__wrap">
               { (user && user.picture) ? <img className="user-card__img" width="100" height="100" alt="аватарка" src={user.picture} /> : <img className="user-card__img" width="100" height="100" alt="аватарка" src="./img/avatar.jpg" />}

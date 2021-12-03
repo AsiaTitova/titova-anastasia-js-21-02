@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
   AppstoreOutlined,
   PictureOutlined,
@@ -18,12 +18,12 @@ import './MenuMobile.scss';
 
 interface Props {
   auth?: boolean;
-  id?: string;
 }
 
-const MenuMobile = ({ auth, id }: Props) => {
+const MenuMobile = ({ auth }: Props) => {
   const [authUserId] = useState(window.localStorage.getItem('user_id') as string);
   const [visibleMenu, setVisibleMenu] = useState(false as boolean);
+  const history = useHistory();
   const [menuList] = useState([
     {
       name: 'Пользователи',
@@ -47,18 +47,16 @@ const MenuMobile = ({ auth, id }: Props) => {
       path: '/login',
     },
   ] as Array<MenuItemType>);
-  const [userMenuList] = useState([
-    {
-      name: 'Личный кабинет',
-      path: `/user/${id || (authUserId && authUserId.slice(1, -1))}`,
-      icon: 'profile',
-    },
-  ] as Array<MenuItemType>);
 
   const logOut = () => {
     window.localStorage.removeItem('user');
     window.localStorage.removeItem('user_id');
     window.localStorage.removeItem('auth');
+    window.location.reload();
+  };
+
+  const goToUserProfile = (): any => {
+    history.push(`/user/${authUserId && authUserId.slice(1, -1)}`);
     window.location.reload();
   };
 
@@ -90,15 +88,15 @@ const MenuMobile = ({ auth, id }: Props) => {
                 </Link>
               </li>
             ))}
-            {auth && userMenuList && userMenuList.map((item, index) => (
+            {auth && (
               <>
-                <li className="menu__item" key={index}>
-                  <Link to={item.path}>
+                <li className="menu__item">
+                  <button type="button" onClick={goToUserProfile}>
                     <span className="menu__icon">
-                      {item.icon && item.icon === 'profile' ? <KeyOutlined /> : <LogoutOutlined /> }
+                      <KeyOutlined />
                     </span>
-                    {item.name}
-                  </Link>
+                    Личный кабинет
+                  </button>
                 </li>
                 <li className="menu__item">
                   <button className="menu__logout" onClick={logOut} type="button">
@@ -109,7 +107,7 @@ const MenuMobile = ({ auth, id }: Props) => {
                   </button>
                 </li>
               </>
-            ))}
+            )}
           </ul>
         )}
       </div>
@@ -119,7 +117,6 @@ const MenuMobile = ({ auth, id }: Props) => {
 
 MenuMobile.defaultProps = {
   auth: false,
-  id: '',
 };
 
 export default connect(
