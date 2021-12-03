@@ -47,7 +47,7 @@ const doPostRequest = <T>(
   errorCallback?: (resp: ResponseError) => any,
   finalCallback?: () => void,
 ) => {
-  const url = new URL(path, USER_CREATE_URL);
+  const url = new URL(path, USER_URL);
   const bodyInfo = JSON.stringify(body);
   fetch(url.toString(), {
     method: METHOD_POST,
