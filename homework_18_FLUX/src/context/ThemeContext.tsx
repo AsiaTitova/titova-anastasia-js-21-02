@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { ReactNode, useState } from 'react';
 import { DARK_THEME, TRUE_STRING } from '../constants/constants';
 

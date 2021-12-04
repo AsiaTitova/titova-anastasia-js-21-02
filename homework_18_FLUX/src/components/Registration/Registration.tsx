@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+/* eslint-disable */
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import './Registration.scss';
 import moment from 'moment';
 import 'moment/locale/ru';
 import {
-  Form, Input, Button, Select, DatePicker, InputNumber,
+  Form, Input, Button, Select, DatePicker, InputNumber, message,
 } from 'antd';
 import { UserOutlined, MailOutlined } from '@ant-design/icons';
 import locale from 'antd/es/date-picker/locale/ru_RU';
-import { createUser } from '../../api/dumMyApi';
-import { UserType } from '../../types/types';
+import createUserAction from "../../actions/userCreate";
+import {ResponseError, UserType} from '../../types/types';
+import userCreateStore from "../../stores/userCreate";
 
 const { Option } = Select;
 const selectBefore = (
@@ -28,6 +30,33 @@ export const Registration = () => {
     console.log('changed', value);
   };
 
+  const errorUserCallback = (userResp: any): void => {
+    if ('error' in userResp) {
+      message.error(Object.values(userResp.data).toString());
+    }
+  };
+
+  const createUserCallback = (userResp: UserType | ResponseError): void => {
+    if ("id" in userResp && userResp.id) {
+      setUserId(userResp.id)
+      setRedirect(true);
+    }
+
+    if ('error' in userResp) {
+      message.error(Object.values(userResp.data).join('<br/>'));
+    }
+  };
+
+  useEffect(() => {
+    userCreateStore.on('success', () => {
+      createUserCallback(userCreateStore.getState().currentUser);
+    });
+    userCreateStore.on('error', () => {
+      errorUserCallback(userCreateStore.getState().error);
+    });
+  }, []);
+
+
   const onFinish = (values: UserType) => {
     const {
       firstName, lastName, email, phone, gender, picture, title,
@@ -39,13 +68,8 @@ export const Registration = () => {
       dateOfBirth = moment(new Date(isDateOfBirth), 'MM/DD/YYYY').toString();
     }
 
-    createUser({
+    createUserAction({
       firstName, lastName, email, phone, gender, dateOfBirth, picture, title,
-    }, (resp: UserType) => {
-      if (resp && resp.id) {
-        setUserId(resp.id);
-        setRedirect(true);
-      }
     });
   };
 

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import './UserList.scss';
 import UserItem from '../UserItem/UserItem';

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { EventEmitter } from 'events'; // Позволяет генерировать события, а также подписаться на выполнение действия по данному событию
 import dispatcher from '../dispatcher';
 import { GET_USERS, LOAD_USERS } from '../constants/constants';
@@ -5,7 +6,7 @@ import { UserListResponse } from "../types/types";
 import { UserListState } from '../types/state';
 import { LoadUserActionType } from "../types/actions";
 
-class UserListStore extends EventEmitter {
+export class UserListStore extends EventEmitter {
   private state: UserListState;
 
   constructor() {

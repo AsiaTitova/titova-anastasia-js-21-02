@@ -1,3 +1,4 @@
+/* eslint-disable */
 export interface ListResponseType<T> {
   data: Array<T>;
   total: number;
@@ -31,6 +32,7 @@ export interface UserListResponse extends ListResponseType<UserType> {}
 
 export interface ResponseError {
   error: string;
+  data: Object;
 }
 
 export interface MenuItem {

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { ReactNode, SyntheticEvent } from 'react';
 import './ComponentWithHelper.scss';
 

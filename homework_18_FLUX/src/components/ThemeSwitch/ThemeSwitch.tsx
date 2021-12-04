@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useContext } from 'react';
 import './ThemeSwitch.scss';
 import { Switch } from 'antd';

@@ -1,59 +1,56 @@
+/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import './UserContainer.scss';
 import { Pagination } from 'antd';
 import UserList from '../UserList/UserList';
 import ThemeSwitch from '../../ThemeSwitch/ThemeSwitch';
-import { ResponseError, UserListResponse, UserType } from '../../../types/types';
-import { getUserList } from '../../../api/dumMyApi';
-import useOnceOnMount from '../../../utils/useOnceOnMount';
+import { UserListState } from '../../../types/state';
+import userListStore from '../../../stores/users';
+import getUsersList from '../../../actions/users';
 
 const UserContainer = () => {
-  const [userList, setUserList] = useState([] as Array<UserType>);
+  const [UserListState, setUserListState] = useState({} as UserListState);
   const [page, setPage] = useState(0 as number);
   const [limit, setLimit] = useState(10 as number);
   const [total, setTotal] = useState(0 as number);
   const [pageSizeArray] = useState(['10', '20', '50'] as Array<string>);
 
-  const loadUsers = (pageNumber: number, limitNumber: number) => {
-    getUserList(pageNumber, limitNumber, (resp: UserListResponse) => {
-      setUserList(resp.data);
-      setPage(resp.page);
-      setLimit(resp.limit);
-      setTotal(resp.total);
-    }, ({ error }: ResponseError) => error);
-  };
-
-  const updateUsers = (pageNumber: number, limitNumber: number) => {
-    getUserList(pageNumber, limitNumber, (resp: UserListResponse) => {
-      setUserList(resp.data);
-    }, ({ error }: ResponseError) => error);
-  };
+  useEffect(() => {
+    userListStore.on('change', () => {
+      const resp: UserListState = userListStore.getState();
+      if (resp.userList) {
+        setPage(resp.userList.page);
+        setLimit(resp.userList.limit);
+        setTotal(resp.userList.total);
+        setUserListState({ ...resp });
+      }
+    });
+    getUsersList(page, limit);
+  }, []);
 
   const updatePageNumber = (current: number, limitNumber: number): void => {
     setPage(current);
-    setLimit(limitNumber);
+    if (limit !== limitNumber) {
+      setLimit(limitNumber);
+      getUsersList(0, limitNumber);
+    } else {
+      getUsersList(current, limitNumber);
+    }
   };
 
-  useOnceOnMount(() => {
-    loadUsers(page, limit);
-  });
-
-  useEffect(() => {
-    updateUsers(page, limit);
-  }, [page, limit]);
 
   return (
     <section className="user">
       <div className="user__header">
         <h2 className="user__title">Пользователи</h2>
       </div>
-      <UserList userList={userList} />
+      {UserListState.userList && <UserList userList={UserListState.userList.data} />}
       <div className="user__footer">
         <Pagination
           total={total}
           pageSize={limit}
           pageSizeOptions={pageSizeArray}
-          current={page}
+          current={page + 1}
           onChange={updatePageNumber}
         />
         <ThemeSwitch />

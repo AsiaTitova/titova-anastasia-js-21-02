@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {
   APP_ID_FIELD, APP_ID_VALUE, USER_URL, LIMIT_FIELD, PAGE_FIELD, METHOD_GET, METHOD_POST, USER_CREATE_URL,
 } from '../constants/constants';
@@ -71,6 +72,6 @@ export const createUser = (
   callback: (resp: UserType) => void,
   errorCallback?: (resp: ResponseError) => void,
   finalCallback?: () => void,
-) => {
+): any => {
   doPostRequest(USER_CREATE_URL, body, callback, errorCallback, finalCallback);
 };

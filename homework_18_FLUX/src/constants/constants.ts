@@ -1,3 +1,4 @@
+/* eslint-disable */
 const BASE_URL = 'https://dummyapi.io/data/v1/';
 
 export const METHOD_GET = 'GET';
@@ -22,3 +23,6 @@ export const TRUE_STRING = 'true';
 
 export const LOAD_USERS = 'LOAD_USERS';
 export const GET_USERS = 'GET_USERS';
+export const GET_CURRENT_USER = 'GET_CURRENT_USER';
+export const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS';
+export const CREATE_USER_ERROR = 'CREATE_USER_ERROR';
