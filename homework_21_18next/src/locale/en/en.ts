@@ -1,3 +1,4 @@
+/* eslint-disable */
 export const APP_EN = {
   system: {
     cancel: 'Cancel',
