@@ -84,8 +84,8 @@ Object.defineProperties(Cat, {
   }
 });
 
-// console.log(Object.keys(Cat))
-// console.log(Object.getOwnPropertyDescriptors(Cat))
+console.log(Object.keys(Cat))
+console.log(Object.getOwnPropertyDescriptors(Cat))
 
 const Dog = {
   __proto__: Animal,
