@@ -1,12 +1,4 @@
 class UserMapper {
-  mapThirdPartyUserToUserShort(user) {
-    return {
-      id: user.id,
-      picture: user.picture,
-      firstName: user.firstName,
-    }
-  }
-
   mapThirdPartyUserToUser(user) {
     return {
       id: user.id,
@@ -28,10 +20,12 @@ class UserMapper {
       image: post.image,
       text: post.text,
     }))
+
     return {
       data: postList,
-      page: posts.page+1,
+      page: posts.page + 1,
       total: posts.total,
+      limit: posts.limit,
     }
   }
 
@@ -40,6 +34,7 @@ class UserMapper {
       data: users.data,
       page: users.page+1,
       total: users.total,
+      limit: users.limit,
     }
   }
 }
