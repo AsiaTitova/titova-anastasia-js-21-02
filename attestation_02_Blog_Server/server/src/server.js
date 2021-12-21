@@ -1,13 +1,11 @@
 const express = require('express');
 const {host, port} = require('../config/serverConfig');
 const router = require('./routes/index');
-let cors = require('cors');
 const logger = require('./logger')
 const context = require('request-context')
 const { v4: generateUUID } = require('uuid')
 
 const app = express();
-app.use(cors());
 
 app.use(express.json());
 app.use(context.middleware('request'));
