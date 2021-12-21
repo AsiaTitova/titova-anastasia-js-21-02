@@ -34,13 +34,13 @@ export const Login = () => {
 
   const onFinish = (values: UserType) => {
     const {
-      firstName, lastName, email, phone, gender, picture, title, dateOfBirth
+      firstName, lastName, email, phone, gender, picture, title,
     } = values;
-    // const isDateOfBirth = values.dateOfBirth;
-    // let dateOfBirth;
-    // if (isDateOfBirth) {
-    //   dateOfBirth = moment(new Date(isDateOfBirth), 'MM/DD/YYYY').toString();
-    // }
+    const isDateOfBirth = values.dateOfBirth;
+    let dateOfBirth;
+    if (isDateOfBirth) {
+      dateOfBirth = moment(new Date(isDateOfBirth), 'MM/DD/YYYY').toString();
+    }
     dispatch(createNewUser({
       firstName, lastName, email, phone, gender, picture, title, dateOfBirth
     }))

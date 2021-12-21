@@ -2,11 +2,17 @@ class UserMapper {
   mapThirdPartyUserToUserShort(user) {
     return {
       id: user.id,
-      picture: user.picture,
+      title: user.title,
       firstName: user.firstName,
+      lastName: user.lastName,
+      gender: user.gender,
+      email: user.email,
+      dateOfBirth: user.dateOfBirth,
+      registerDate: user.registerDate,
+      phone: user.phone,
+      picture: user.picture,
     }
   }
-
 
   mapThirdPartyUserToUser(user) {
     return {
