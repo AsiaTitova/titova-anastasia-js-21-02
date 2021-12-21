@@ -1,4 +1,13 @@
 class UserMapper {
+  mapThirdPartyUserToUserShort(user) {
+    return {
+      id: user.id,
+      picture: user.picture,
+      firstName: user.firstName,
+    }
+  }
+
+
   mapThirdPartyUserToUser(user) {
     return {
       id: user.id,
