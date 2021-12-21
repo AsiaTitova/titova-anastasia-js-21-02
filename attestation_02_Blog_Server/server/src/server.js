@@ -4,9 +4,10 @@ const router = require('./routes/index');
 const logger = require('./logger')
 const context = require('request-context')
 const { v4: generateUUID } = require('uuid')
+let cors = require('cors');
 
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 app.use(context.middleware('request'));
 app.use((req, res, next) => {

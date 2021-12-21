@@ -1,5 +1,5 @@
 /* eslint-disable */
-export const BASE_URL = 'https://dummyapi.io/data/v1/';
+export const BASE_URL = 'http://localhost:3007/api/';
 
 export const METHOD_GET = 'GET';
 export const METHOD_POST = 'POST';
