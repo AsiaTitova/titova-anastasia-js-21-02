@@ -12,13 +12,13 @@ const NavigationList = () => {
   return (
     <nav className="navigation">
       <Menu mode="horizontal">
-        <Menu.Item>
+        <Menu.Item key={1}>
           <Link to='/users'>
             <span className="navigation__icon"><UserOutlined /></span>
             {t('navigation.users')}
           </Link>
         </Menu.Item>
-        <Menu.Item>
+        <Menu.Item key={2}>
           <Link to='/posts'>
             <span className="navigation__icon"><PictureOutlined /></span>
             {t('navigation.posts')}

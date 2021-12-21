@@ -8,5 +8,5 @@ module.exports = {
     page_field: 'page',
     limit_field: 'limit',
     page_default: 1,
-    limit_default: 6,
+    limit_default: 12,
 };

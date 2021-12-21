@@ -53,7 +53,7 @@ export const updatePageNumber = (pageNum: number, pageSize: number): any => asyn
   try {
   dispatch(setLimitAction(pageSize));
   dispatch(setPageAction(pageNum));
-    const resp = await getPostList(1, 10)
+    const resp = await getPostList(1, 12)
     const data = JSON.parse(resp);
     dispatch(loadSuccessAction(data.data, data.total, data.page, data.limit));
   } catch (error: any) {
