@@ -1,10 +1,13 @@
 class PostMapper {
   mapThirdPartyPostList(posts) {
+    if (!posts) {
+      return null;
+    }
     return {
       data: posts.data,
-      page: posts.page + 1,
+      page: posts.page,
       total: posts.total,
-      limit: posts.limit,
+      limit: posts.limit
     }
   }
 }

@@ -1,22 +1,16 @@
 const context = require('request-context');
-const fs = require("fs");
 
 const options = {
-    logDirectory:'./logs', // Директория для хранения логгов (должна существовать)
-    fileNamePattern: '<DATE>.log', // Паттерн файла логов
-    dateFormat: 'DD.MM.YYYY', // Формат даты
+    logDirectory:'./logs',
+    fileNamePattern: '<DATE>.log',
+    dateFormat: 'DD.MM.YYYY',
 }
 
-if (!fs.existsSync(options.logDirectory)) {
-  fs.mkdir(options.logDirectory, {}, () => {});
-}
-
-
-const logger = require('simple-node-logger').createRollingFileLogger(options);  // Создание логгера
+const logger = require('simple-node-logger').createRollingFileLogger(options);
 
 module.exports = {
     ...logger,
-    info: (message) => logger.info(context.get('uuid'), ' ', message), // Переназначение метода, для автоматического логирования UUID запроса
+    info: (message) => logger.info(context.get('uuid'), ' ', message),
     error: (message) => logger.error(context.get('uuid'), ' ', message),
     fatal: (message) => logger.fatal(context.get('uuid'), ' ', message),
 }

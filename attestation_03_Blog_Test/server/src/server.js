@@ -1,18 +1,19 @@
 const express = require('express');
 const {host, port} = require('../config/serverConfig');
 const router = require('./routes/index');
+let cors = require('cors');
 const logger = require('./logger')
 const context = require('request-context')
 const { v4: generateUUID } = require('uuid')
-let cors = require('cors');
 
 const app = express();
 app.use(cors());
+
 app.use(express.json());
 app.use(context.middleware('request'));
 app.use((req, res, next) => {
   context.set('uuid', generateUUID());
-  res.type('text/plain')
+  res.type('application/json')
   next()
 })
 
@@ -24,4 +25,6 @@ app.use((err, req, res, next) => {
   next()
 });
 
-app.listen(port, host, () => console.log('App started', host, port));
+const server = app.listen(port, host, () => console.log('App started', host, port));
+
+module.exports = server;
