@@ -21,9 +21,6 @@ const doGetRequest = async (
   url.search = new URLSearchParams(searchParams).toString();
   const resp = await fetch(url.toString(), {
     method: METHOD_GET,
-    headers: new Headers({
-      [APP_ID_FIELD]: APP_ID_VALUE,
-    }),
   });
   if (resp.ok) {
     return resp.text();
@@ -41,7 +38,6 @@ const doChangeRequest = async <T>(
   return fetch(url.toString(), {
     method,
     headers: new Headers({
-      [APP_ID_FIELD]: APP_ID_VALUE,
       'Content-Type': 'application/json',
     }),
     body: bodyInfo,

@@ -10,7 +10,7 @@ interface Props {
 }
 
 const UserItem = ({ item }: Props) => (
-  <Link to={`user/${item.id}`}>
+  <Link className="user__link" to={`user/${item.id}`}>
     <div className="user__info">
       <UserAvatar id={item.id} firstName={item.firstName} lastName={item.lastName} picture={item.picture} />
     </div>
