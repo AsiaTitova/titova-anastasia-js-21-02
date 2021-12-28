@@ -43,8 +43,6 @@ export const LOAD_POSTS_ERROR = 'POSTS/ERROR';
 export const SET_PAGE = 'SET_PAGE';
 export const SET_LIMIT = 'SET_LIMIT';
 
-export const COMMENTS_POST = 'COMMENTS/LOAD_BY_POST';
-export const COMMENTS_USER = 'COMMENTS/LOAD_BY_USER';
 export const COMMENTS_LOAD = 'COMMENTS/LOAD';
 export const COMMENTS_SUCCESS = 'COMMENTS/SUCCESS';
 export const COMMENTS_ERROR = 'COMMENTS/ERROR';

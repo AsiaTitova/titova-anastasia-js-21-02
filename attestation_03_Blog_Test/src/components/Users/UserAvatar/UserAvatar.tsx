@@ -32,8 +32,8 @@ const UserAvatar = ({
         <Avatar src={picture} size="large" />
         <div className="user-avatar__tooltip">{id}</div>
         <p className="user-avatar__name">
-          <span>{firstName}</span>
-          <span>{lastName}</span>
+          <span className="user-avatar__first-name">{firstName}</span>
+          <span className="user-avatar__last-name">{lastName}</span>
         </p>
       </div>
     </div>
